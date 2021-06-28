@@ -59,34 +59,22 @@ end
 
 function digCeil()
   tfun.digUpAndUp(1)
-  tfun.turnAround()
+  if height % 2 == 0 then tfun.turnAround() end
   tfun.digAndForward(2)
   tfun.digUpAndUp(1)
-  turtle.turnRight()
-  tfun.digAndForward(width-1)
   turtle.turnLeft()
-  tfun.digAndForward(1)
-  turtle.turnLeft()
-  tfun.digAndForward(width-1)
+  tfun.digAndForward(width-2)
   turtle.turnRight()
-  while turtle.detectUp() do
-    turtle.digUp()
-  end
   tfun.digAndForward(1)
   turtle.turnRight()
-  for i = 1, width-1 do
-    while turtle.detectUp() do
-      turtle.digUp()
-    end
-    tfun.digAndForward(1)
-  end
+  tfun.digAndForward(width-2)
   turtle.turnLeft()
   while turtle.detectUp() do
     turtle.digUp()
   end
   tfun.digAndForward(1)
   turtle.turnLeft()
-  for i = 1, width-1 do
+  for i = 1, width-2 do
     while turtle.detectUp() do
       turtle.digUp()
     end
@@ -98,20 +86,32 @@ function digCeil()
   end
   tfun.digAndForward(1)
   turtle.turnRight()
-  for i = 1, width-1 do
+  for i = 1, width-2 do
     while turtle.detectUp() do
       turtle.digUp()
     end
     tfun.digAndForward(1)
   end
   turtle.turnLeft()
+  while turtle.detectUp() do
+    turtle.digUp()
+  end
   tfun.digAndForward(1)
   turtle.turnLeft()
-  tfun.digAndForward(width-1)
+  for i = 1, width-2 do
+    while turtle.detectUp() do
+      turtle.digUp()
+    end
+    tfun.digAndForward(1)
+  end
   turtle.turnRight()
   tfun.digAndForward(1)
   turtle.turnRight()
-  tfun.digAndForward(width-1)
+  tfun.digAndForward(width-2)
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  turtle.turnLeft()
+  tfun.digAndForward(width-2)
 end
 
 function mainLoop()
