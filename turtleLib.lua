@@ -31,6 +31,7 @@ function digAndForward(nb)
       turtle.dig()
     end
     turtle.forward()
+    while not turtle.forward() do turtle.attack("left") end
     nb = nb - 1
   end
 end
@@ -41,7 +42,7 @@ function digUpAndUp(nb)
     while turtle.detectUp() do
       turtle.digUp()
     end
-    turtle.up()
+    while not turtle.up() do turtle.attackUp("left") end
     nb = nb - 1
   end
 end
@@ -52,7 +53,7 @@ function digDownAndDown(nb)
     while turtle.detectDown() do
       turtle.digDown()
     end
-    turtle.down()
+    while not turtle.down() do turtle.attackDown("left") end
     nb = nb - 1
   end
 end
