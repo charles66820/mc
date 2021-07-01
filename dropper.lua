@@ -9,7 +9,7 @@ end
 
 if #args >= 2 then
   time = tonumber(args[1])
-  nbDrop = tonumber(args[1])
+  nbDrop = tonumber(args[2])
 end
 
 if time <= 0 then
