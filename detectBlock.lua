@@ -1,5 +1,4 @@
 -- Detect block
-
 local success, data = turtle.inspect()
 
 print("Inspect output: ", success)

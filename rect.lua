@@ -1,3 +1,4 @@
+-- Dig a rectangle
 local tfun = require("turtleLib")
 -- Args and vars def
 local width = 0

@@ -1,3 +1,4 @@
+-- Mine a circle tunnel
 local tfun = require("turtleLib")
 -- Args and vars def
 local width = 4

@@ -1,3 +1,4 @@
+-- Drop items with an interval
 -- Args and vars def
 local time = 0
 local nbDrop = 0
