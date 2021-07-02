@@ -62,10 +62,19 @@ function turnAround()
   turtle.turnLeft()
 end
 
+function printProcess(msg)
+  local x, y = term.getCursorPos()
+  term.setCursorPos(1, 1)
+  term.clearLine()
+  term.write(msg)
+  term.setCursorPos(x, y)
+end
+
 return {
   refuel = refuel,
   digAndForward = digAndForward,
   digUpAndUp = digUpAndUp,
   digDownAndDown = digDownAndDown,
-  turnAround = turnAround
+  turnAround = turnAround,
+  printProcess = printProcess
 }

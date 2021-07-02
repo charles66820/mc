@@ -3,13 +3,14 @@ local time = 0
 local nbDrop = 0
 local args = {...}
 
-if #args >= 1 then
+if #args == 1 then
   time = tonumber(args[1])
-end
-
-if #args >= 2 then
+elseif #args == 2 then
   time = tonumber(args[1])
   nbDrop = tonumber(args[2])
+elseif #args > 2 then
+  print("Usage: ", args[0], " <time> <nbDrop>")
+  os.exit()
 end
 
 if time <= 0 then
