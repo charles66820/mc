@@ -30,7 +30,6 @@ function digAndForward(nb)
     while turtle.detect() do
       turtle.dig()
     end
-    turtle.forward()
     while not turtle.forward() do turtle.attack("left") end
     nb = nb - 1
   end
