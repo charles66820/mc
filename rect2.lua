@@ -15,8 +15,15 @@ elseif #args == 3 then
   width = tonumber(args[1])
   length = tonumber(args[2])
   height = tonumber(args[3])
-elseif #args > 2 then
-  print("Usage: ", args[0], " <width> <length> <height>")
+elseif #args == 4 then
+  width = tonumber(args[1])
+  length = tonumber(args[2])
+  height = tonumber(args[3])
+  if args[4] == "true" then
+    centerStart = true
+  end
+elseif #args > 4 then
+  print("Usage: ", args[0], " <width> <length> <height> <centerStart>")
   os.exit()
 end
 
@@ -38,23 +45,47 @@ end
 local restLayer = height % 3
 local nbThreeLayer = (height - restLayer) / 3
 local nbLayer = nbThreeLayer
-if restLayer ~= 0 then nbLayer = nbLayer + 1 end
+if restLayer ~= 0 then
+  nbLayer = nbLayer + 1
+end
 
 -- functions
+function init()
+  if centerStart then
+    tfun.digAndForward(1)
+    tfun.digUpAndUp(1)
+    turtle.turnLeft()
+    tfun.digAndForward(math.floor(length / 2))
+    tfun.turnAround()
+  else
+    if height > 1 then
+      tfun.digUpAndUp(1)
+    end
+    turtle.turnRight()
+  end
+end
 function line(h)
-  if h == 3 then turtle.digUp() end
-  if h >= 2 then turtle.digDown() end
-  for i=1,length-1 do
+  if h == 3 then
+    turtle.digUp()
+  end
+  if h >= 2 then
+    turtle.digDown()
+  end
+  for i = 1, length - 1 do
     -- tfun.printProcess("Largeur: " .. (i + 1) .. "/" .. length)
     tfun.digAndForward(1)
-    if h == 3 then turtle.digUp() end
-    if h >= 2 then turtle.digDown() end
+    if h == 3 then
+      turtle.digUp()
+    end
+    if h >= 2 then
+      turtle.digDown()
+    end
   end
 end
 
 local isFirst = true
 function layers(n, h)
-  for i=1, n do
+  for i = 1, n do
     if not isFirst then
       tfun.turnAround()
       if h < 3 then
@@ -69,7 +100,11 @@ function layers(n, h)
         local pivo = 0
         if width % 2 == 0 then
           if h < 3 then
-            if nbThreeLayer == 0 then pivo = 0 else pivo = 1 end
+            if nbThreeLayer == 0 then
+              pivo = 0
+            else
+              pivo = 1
+            end
           else
             pivo = (i + 1) % 2
           end
@@ -93,7 +128,9 @@ function layers(n, h)
 end
 
 function mainLoop()
-  if nbThreeLayer > 0 then layers(nbThreeLayer, 3) end
+  if nbThreeLayer > 0 then
+    layers(nbThreeLayer, 3)
+  end
   if restLayer ~= 0 then
     layers(1, restLayer)
   end
@@ -113,14 +150,23 @@ function clean()
       tfun.digAndForward(length - 1)
       tfun.turnAround()
     end
+  else
+    tfun.turnAround()
   end
-  tfun.digDownAndDown(height)
+  if restLayer == 1 and nbThreeLayer > 0 then
+    tfun.digDownAndDown(height - 2)
+  elseif restLayer ~= 0 then
+    tfun.digDownAndDown(height - restLayer)
+  else
+    tfun.digDownAndDown(height - 3)
+  end
+  -- TODO: reset center
 end
 
 function start()
-  -- init()
+  init()
   mainLoop()
-  --clean()
+  clean()
 end
 
 start()

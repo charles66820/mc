@@ -12,51 +12,6 @@ if #args >= 1 then
 end
 
 -- functions
-function init()
-  tfun.digAndForward(1)
-  tfun.digUpAndUp(1)
-  turtle.turnLeft()
-  for i=1,length/2 do
-    turtle.digUp()
-    turtle.digDown()
-    tfun.digAndForward(1)
-  end
-end
-
-function line()
-  turtle.digUp()
-  turtle.digDown()
-  for i=1,length-1 do
-    tfun.digAndForward(1)
-    turtle.digUp()
-    turtle.digDown()
-  end
-end
-
-local isInitRot = true
-function layer()
-  lWidth = width-2
-  tfun.turnAround()
-  line()
-  while lWidth > 0 do
-    lWidth = lWidth - 1
-    turtle.turnLeft()
-    tfun.digAndForward(1)
-    turtle.turnLeft()
-    line()
-    if lWidth >= 1 then
-      lWidth = lWidth - 1
-      turtle.turnRight()
-      tfun.digAndForward(1)
-      turtle.turnRight()
-      line()
-      isInitRot = true
-    else
-      isInitRot = false
-    end
-  end
-end
-
 function digCeil()
   tfun.digUpAndUp(1)
   if height % 2 == 0 then tfun.turnAround() end
@@ -115,35 +70,15 @@ function digCeil()
 end
 
 function mainLoop()
-  nbUp = (height / 3) - 1
-  layer()
-  while nbUp > 0 do
-    if not isInitRot then
-      tfun.turnAround()
-      for i=1,length-1 do
-        tfun.digAndForward(1)
-      end
-    end
-    tfun.digUpAndUp(3)
-    layer()
-    nbUp = nbUp - 1
-  end
+  shell.run("rect " .. width .. length .. height .. "true")
   if haveCeil then digCeil() end
 end
 
 function clean()
   -- TODO
-  if haveCeil then return end
-  tfun.turnAround()
-  for i=1,4 do turtle.down() end
-  for i=1,5 do turtle.forward() end
-  turtle.turnLeft()
-  turtle.forward()
-  tfun.turnAround()
 end
 
 function start()
-  init()
   mainLoop()
   clean()
 end
