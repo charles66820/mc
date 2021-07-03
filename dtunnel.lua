@@ -1,4 +1,4 @@
--- Mine a circle down tunnel
+-- Mine a circle vertical tunnel
 local tfun = require("turtleLib")
 -- Args and vars def
 local deeper = 0
