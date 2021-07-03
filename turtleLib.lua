@@ -1,4 +1,18 @@
+local dropItemList = {
+  "minecraft:cobblestone",
+  "minecraft:andesite",
+  "minecraft:diorite",
+  "minecraft:granite",
+  "minecraft:gravel",
+  "minecraft:netherrack"
+}
+
+config = {
+  dropBadItems = true
+}
+
 function refuel()
+  if config.dropBadItems then dropBadItems() end -- Clean inventory before refuel
   local fuelLevel = turtle.getFuelLevel()
   if fuelLevel == "unlimited" or fuelLevel > 0 then
     return
@@ -24,13 +38,34 @@ function refuel()
   end
 end
 
+local function hasValue(arr, val)
+  for i, v in ipairs(arr) do
+    if v == val then
+      return true
+    end
+  end
+  return false
+end
+
+function dropBadItems()
+  for n = 1, 16 do
+    local data = turtle.getItemDetail()
+    if data and hasValue(dropItemList, data.name) then
+      turtle.select(n)
+      turtle.dropDown(data.count)
+    end
+  end
+end
+
 function digAndForward(nb)
   while nb > 0 do
     refuel()
     while turtle.detect() do
       turtle.dig()
     end
-    while not turtle.forward() do turtle.attack("left") end
+    while not turtle.forward() do
+      turtle.attack("left")
+    end
     nb = nb - 1
   end
 end
@@ -41,7 +76,9 @@ function digUpAndUp(nb)
     while turtle.detectUp() do
       turtle.digUp()
     end
-    while not turtle.up() do turtle.attackUp("left") end
+    while not turtle.up() do
+      turtle.attackUp("left")
+    end
     nb = nb - 1
   end
 end
@@ -52,7 +89,9 @@ function digDownAndDown(nb)
     while turtle.detectDown() do
       turtle.digDown()
     end
-    while not turtle.down() do turtle.attackDown("left") end
+    while not turtle.down() do
+      turtle.attackDown("left")
+    end
     nb = nb - 1
   end
 end
