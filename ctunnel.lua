@@ -81,10 +81,9 @@ function circle()
 end
 
 function mainLoop()
-  local lwidth = width
-  while lwidth > 0 do
+  for i = 1, width do
     circle()
-    lwidth = lwidth - 1
+    tfun.printProcess("Longeur: " .. i .. "/" .. width)
   end
 end
 

@@ -48,6 +48,7 @@ end
 
 -- functions
 function digCeil()
+  tfun.printProcess("Digging ceil...")
   if height >= 3 then
     tfun.digUpAndUp(height - 2)
   end
