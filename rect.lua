@@ -111,13 +111,9 @@ function layers(n, h)
           end
         end
         if lwidth % 2 == pivo then
-          turtle.turnRight()
-          tfun.digAndForward(1)
-          turtle.turnRight()
+          tfun.turnDigAndForwardRight()
         else
-          turtle.turnLeft()
-          tfun.digAndForward(1)
-          turtle.turnLeft()
+          tfun.turnDigAndForwardLeft()
         end
       end
       tfun.printProcess("Longeur: " .. (lwidth + 1) .. "/" .. width .. " Layer: " .. i .. "/" .. nbLayer)
@@ -161,7 +157,7 @@ function clean()
   else
     tfun.digDownAndDown(height - 3)
   end
-  -- TODO: reset center
+  -- TODO: reset center ?
 end
 
 function start()

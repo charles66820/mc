@@ -62,6 +62,18 @@ function turnAround()
   turtle.turnLeft()
 end
 
+function turnDigAndForwardLeft()
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  turtle.turnLeft()
+end
+
+function turnDigAndForwardRight()
+  turtle.turnRight()
+  tfun.digAndForward(1)
+  turtle.turnRight()
+end
+
 function printProcess(msg)
   local x, y = term.getCursorPos()
   term.setCursorPos(1, 1)
@@ -76,5 +88,7 @@ return {
   digUpAndUp = digUpAndUp,
   digDownAndDown = digDownAndDown,
   turnAround = turnAround,
+  turnDigAndForwardLeft = turnDigAndForwardLeft,
+  turnDigAndForwardRight = turnDigAndForwardRight,
   printProcess = printProcess
 }
