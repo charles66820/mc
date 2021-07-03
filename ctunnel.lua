@@ -1,11 +1,19 @@
 -- Mine a circle tunnel
 local tfun = require("turtleLib")
 -- Args and vars def
-local width = 4
+local width = 0
 local args = {...}
 
-if #args >= 1 then
+if #args == 1 then
   width = tonumber(args[1])
+elseif #args > 1 then
+  print("Usage: ", args[0], " <longeur>")
+  os.exit()
+end
+
+if width <= 0 then
+  print("Longeur :")
+  width = tonumber(read())
 end
 
 -- functions
