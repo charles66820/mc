@@ -103,13 +103,13 @@ end
 
 function turnDigAndForwardLeft()
   turtle.turnLeft()
-  tfun.digAndForward(1)
+  digAndForward(1)
   turtle.turnLeft()
 end
 
 function turnDigAndForwardRight()
   turtle.turnRight()
-  tfun.digAndForward(1)
+  digAndForward(1)
   turtle.turnRight()
 end
 

@@ -63,9 +63,9 @@ end
 
 function clean()
   if not invert then
-    tfun.digDownAndDown(deeper)
-  else
     tfun.digUpAndUp(deeper)
+  else
+    tfun.digDownAndDown(deeper)
   end
 end
 
