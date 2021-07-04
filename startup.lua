@@ -5,4 +5,3 @@ for i, filename in ipairs(libs) do
   os.loadAPI(workdir .. filename)
 end
 shell.setPath(shell.path() .. ":" .. workdir)
-print(shell.path())
