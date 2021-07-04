@@ -1,18 +1,14 @@
-local dropItemList = {
-  "minecraft:cobblestone";
-  "minecraft:andesite";
-  "minecraft:diorite";
-  "minecraft:granite";
-  "minecraft:gravel";
-  "minecraft:netherrack";
-}
+local dropItemList = {"minecraft:cobblestone", "minecraft:andesite", "minecraft:diorite", "minecraft:granite",
+                      "minecraft:gravel", "minecraft:netherrack"}
 
 config = {
   dropBadItems = true
 }
 
 function refuel()
-  if config.dropBadItems then dropBadItems() end -- Clean inventory before refuel
+  if config.dropBadItems then
+    dropBadItems()
+  end -- Clean inventory before refuel
   local fuelLevel = turtle.getFuelLevel()
   if fuelLevel == "unlimited" or fuelLevel > 0 then
     return
@@ -50,7 +46,9 @@ end
 function dropBadItems()
   for n = 1, 16 do
     local data = turtle.getItemDetail()
-    if data then print(data.name) end
+    if data then
+      print(data.name)
+    end
     if data and hasValue(dropItemList, data.name) then
       turtle.select(n)
       turtle.dropDown(data.count)
@@ -116,10 +114,16 @@ end
 
 function printProcess(msg)
   local x, y = term.getCursorPos()
+  local saveColor = term.getTextColor()
+  local saveBgColor = term.getBackgroundColor()
   term.setCursorPos(1, 1)
   term.clearLine()
+  term.setTextColor(colors.black)
+  term.setBackgroundColor(colors.white)
   term.write(msg)
   term.setCursorPos(x, y)
+  term.setTextColor(saveColor)
+  term.setBackgroundColor(saveBgColor)
 end
 
 return {
