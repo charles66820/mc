@@ -1,5 +1,5 @@
 local url = "https://raw.githubusercontent.com/charles66820/mc/master/"
-local files = {"turtleLib.lua", "ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua"}
+local files = {"startup.lua", "turtleLib.lua", "ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua"}
 
 local workdir = "/bitacu/"
 
@@ -25,3 +25,5 @@ local startupContent = [[
 local startup = fs.open("startup", "w")
 startup.write(startupContent)
 startup.close()
+
+shell.run("bitacu/startup")
