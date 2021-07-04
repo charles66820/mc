@@ -57,7 +57,7 @@ function circle()
     turtle.turnLeft()
     turtle.dig()
   end
-  turtle.turnAround()
+  tfun.turnAround()
   tfun.digAndForward(3)
   turtle.turnLeft()
 end
