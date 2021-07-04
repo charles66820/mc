@@ -104,7 +104,7 @@ function digCeil()
 end
 
 function mainLoop()
-  shell.run("rect " .. width .. " " .. length .. " " .. height .. " true")
+  shell.run("rect", width, length, height, "true")
   if haveCeil then
     digCeil()
   end
