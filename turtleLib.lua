@@ -1,10 +1,10 @@
 local dropItemList = {
-  "minecraft:cobblestone",
-  "minecraft:andesite",
-  "minecraft:diorite",
-  "minecraft:granite",
-  "minecraft:gravel",
-  "minecraft:netherrack"
+  "minecraft:cobblestone";
+  "minecraft:andesite";
+  "minecraft:diorite";
+  "minecraft:granite";
+  "minecraft:gravel";
+  "minecraft:netherrack";
 }
 
 config = {
@@ -50,6 +50,7 @@ end
 function dropBadItems()
   for n = 1, 16 do
     local data = turtle.getItemDetail()
+    if data then print(data.name) end
     if data and hasValue(dropItemList, data.name) then
       turtle.select(n)
       turtle.dropDown(data.count)
