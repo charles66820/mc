@@ -45,12 +45,9 @@ end
 
 function dropBadItems()
   for n = 1, 16 do
+    turtle.select(n)
     local data = turtle.getItemDetail()
-    if data then
-      print(data.name)
-    end
     if data and hasValue(dropItemList, data.name) then
-      turtle.select(n)
       turtle.dropDown(data.count)
     end
   end
@@ -128,6 +125,7 @@ end
 
 return {
   refuel = refuel,
+  dropBadItems = dropBadItems,
   digAndForward = digAndForward,
   digUpAndUp = digUpAndUp,
   digDownAndDown = digDownAndDown,
