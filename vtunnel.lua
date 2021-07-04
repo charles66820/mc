@@ -36,20 +36,28 @@ function circle()
     turtle.turnRight()
   end
   tfun.digAndForward(3)
-  turtle.turnRight()
+  turtle.dig()
+
   for i = 1, 4 do
-    tfun.digAndForward(1)
     turtle.turnRight()
+    tfun.digAndForward(1)
+    turtle.dig()
+    turtle.turnLeft()
+    turtle.dig()
+    tfun.turnAround()
     tfun.digAndForward(1)
     for j = 1, 2 do
       turtle.dig()
       turtle.turnLeft()
       tfun.digAndForward(1)
+      turtle.dig()
       turtle.turnRight()
       tfun.digAndForward(1)
     end
+    turn.turnLeft()
+    turtle.dig()
   end
-  turtle.turnRight()
+  turtle.turnAround()
   tfun.digAndForward(3)
   turtle.turnLeft()
 end
