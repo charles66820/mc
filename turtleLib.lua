@@ -1,4 +1,4 @@
-local dropItemList = {"minecraft:cobblestone", "minecraft:andesite", "minecraft:diorite", "minecraft:granite",
+local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite", "minecraft:granite",
                       "minecraft:gravel", "minecraft:netherrack"}
 
 config = {
