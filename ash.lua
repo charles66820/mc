@@ -208,7 +208,7 @@ end
 
 function mainLoop()
   collect()
-  while ture do
+  while true do
     place()
     os.sleep(600)
     collect()
