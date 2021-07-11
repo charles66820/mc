@@ -45,6 +45,33 @@ function refuel()
   end
 end
 
+function selectBlock(name)
+  for n = 1, 16 do
+    turtle.select(n)
+    local data = turtle.getItemDetail()
+    if data and data.name == name then
+      return true
+    end
+  end
+  return false
+end
+
+function place(name, title, dir)
+  if not selectBlock(name) then
+    print("Add " .. title .. " to continue")
+    while not selectBlock(name) do
+      os.pullEvent("turtle_inventory")
+    end
+  end
+  if dir == "up" then
+    turtle.placeUp()
+  elseif dir == "down" then
+    turtle.placeDown()
+  else
+    turtle.place()
+  end
+end
+
 function dropBadItems()
   for n = 1, 16 do
     turtle.select(n)
@@ -127,6 +154,8 @@ end
 
 return {
   refuel = refuel,
+  selectBlock = selectBlock,
+  place = place,
   dropBadItems = dropBadItems,
   digAndForward = digAndForward,
   digUpAndUp = digUpAndUp,

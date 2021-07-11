@@ -4,45 +4,20 @@ local tfun = require("turtleLib")
 local args = {...}
 
 -- functions
-function selectBlock(name)
-  for n = 1, 16 do
-    turtle.select(n)
-    local data = turtle.getItemDetail()
-    if data and data.name == name then
-      return true
-    end
-  end
-  return false
-end
-
-function place(name, title, pos)
-  if not selectBlock(name) then
-    print("Add " .. title .. " to continue")
-    while not selectBlock(name) do
-      os.pullEvent("turtle_inventory")
-    end
-  end
-  if pos == "up" then
-    turtle.placeUp()
-  else
-    turtle.place()
-  end
-end
-
 function placeWoodPile()
-  place("forestry:wood_pile", "wood pile", "")
+  tfun.place("forestry:wood_pile", "wood pile", "front")
 end
 
 function placeUpWoodPile()
-  place("forestry:wood_pile", "wood pile", "up")
+  tfun.place("forestry:wood_pile", "wood pile", "up")
 end
 
 function placeCloseBlock()
-  place("minecraft:end_stone", "end stone", "")
+  tfun.place("minecraft:end_stone", "end stone", "front")
 end
 
 function placeFlintAndSteel()
-  place("minecraft:flint_and_steel", "flint & steel", "")
+  tfun.place("minecraft:flint_and_steel", "flint & steel", "front")
 end
 
 function collect()
