@@ -1,6 +1,6 @@
 local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
                       "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"}
-local fuelList = {"minecraft:coal"}
+local fuelList = {"minecraft:coal", "minecraft:charcoal"}
 
 config = {
   dropBadItems = true
