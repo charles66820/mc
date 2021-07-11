@@ -185,7 +185,7 @@ function mainLoop()
   collect()
   while true do
     place()
-    os.sleep(600)
+    os.sleep(900)
     collect()
   end
 end
