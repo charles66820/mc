@@ -1,9 +1,19 @@
-local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite", "minecraft:granite",
-                      "minecraft:gravel", "minecraft:netherrack"}
+local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
+                      "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"}
+local fuelList = {"minecraft:coal"}
 
 config = {
   dropBadItems = true
 }
+
+local function hasValue(arr, val)
+  for i, v in ipairs(arr) do
+    if v == val then
+      return true
+    end
+  end
+  return false
+end
 
 function refuel()
   if config.dropBadItems then
@@ -15,8 +25,9 @@ function refuel()
   end
   local function tryRefuel()
     for n = 1, 16 do
-      if turtle.getItemCount(n) > 0 then
-        turtle.select(n)
+      turtle.select(n)
+      local data = turtle.getItemDetail()
+      if data and data.count > 0 and hasValue(fuelList, data.name) then
         if turtle.refuel(1) then
           turtle.select(1)
           return true
@@ -32,15 +43,6 @@ function refuel()
       os.pullEvent("turtle_inventory")
     end
   end
-end
-
-local function hasValue(arr, val)
-  for i, v in ipairs(arr) do
-    if v == val then
-      return true
-    end
-  end
-  return false
 end
 
 function dropBadItems()
