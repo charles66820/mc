@@ -81,7 +81,7 @@ function place(name, dir)
   end
 end
 
-function suckItem(dir, type, nb)
+function suckItem(dir, name, nb)
   if not selectEmptySlot() then
     print("Vider l'inventaire de la turtle pour continuer")
     while not selectEmptySlot() do
@@ -95,8 +95,19 @@ function suckItem(dir, type, nb)
   else
     turtle.suck()
   end
+  -- Check if is good item
   local data = turtle.getItemDetail()
-  if data and hasValue(arr, data.name) then
+  if not data or name == data.name then
+    if not data then
+      print("Aucun item collecter!")
+      print("Ajoutez-en puis écrivez \"fixer\"")
+    else
+      print("L'item collecter doit être \"" .. name .. "\" est non \"" .. data.name .. "\"!")
+      print("Corriger le problème puis écrivez \"fixer\"")
+    end
+    while read() ~= "fixer" do end
+    suckItem(dir, name, nb)
+  end
 end
 
 function dropAllItems(arr, dir)
