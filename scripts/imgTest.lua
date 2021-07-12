@@ -1,4 +1,4 @@
-local sfun = require("screenLib")
+local sfun = screenLib
 
 local screen = peripheral.wrap("right")
 term.redirect(screen)

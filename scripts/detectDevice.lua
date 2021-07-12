@@ -1,5 +1,5 @@
 -- Detect machine
-local cfun = require("computerLib")
+local cfun = computerLib
 -- Args and vars def
 local side = nil
 local args = {...}

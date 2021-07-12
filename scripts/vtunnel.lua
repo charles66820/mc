@@ -1,6 +1,6 @@
 -- Mine a circle vertical tunnel
-local cfun = require("computerLib")
-local tfun = require("turtleLib")
+local cfun = computerLib
+local tfun = turtleLib
 -- Args and vars def
 local deeper = 0
 local invert = false

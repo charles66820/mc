@@ -1,6 +1,6 @@
 -- Dig a rectangle
-local cfun = require("computerLib")
-local tfun = require("turtleLib")
+local cfun = computerLib
+local tfun = turtleLib
 -- Args and vars def
 local width = 0
 local length = 0

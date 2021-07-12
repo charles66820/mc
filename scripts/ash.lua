@@ -1,6 +1,6 @@
 -- Farm ash
-local cfun = require("computerLib")
-local tfun = require("turtleLib")
+local cfun = computerLib
+local tfun = turtleLib
 -- Args and vars def
 local args = {...}
 

@@ -1,4 +1,4 @@
-local cfun = require("computerLib")
+local cfun = computerLib
 
 local workdir = "/bitacu/"
 local iconDirName = "icon/"
