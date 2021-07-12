@@ -5,6 +5,19 @@ local tfun = require("turtleLib")
 local args = {...}
 
 -- functions
+function refill()
+  tfun.dropAllItems({"forestry:ash"}, "front")
+  turtle.turnRight()
+  tfun.dropAllItems({"minecraft:charcoal"}, "front")
+  tfun.suckItem("front", "minecraft:charcoal", 64)
+  tfun.turnAround()
+  tfun.suckItem("front", "forestry:wood_pile", 35)
+  if not tfun.selectItem("minecraft:flint_and_steel") then
+    tfun.suckItem("down", "minecraft:flint_and_steel", 1)
+  end
+  turtle.turnLeft()
+end
+
 function collect()
   cfun.printProcess("Collecting...")
   tfun.digAndForward(2)
@@ -43,7 +56,6 @@ function collect()
   tfun.digDownAndDown(1)
   tfun.turnAround()
   tfun.digAndForward(4)
-  tfun.turnAround()
 end
 
 function place()
@@ -150,10 +162,12 @@ end
 
 function mainLoop()
   collect()
+  refill()
   while true do
     place()
     os.sleep(900)
     collect()
+    refill()
   end
 end
 
