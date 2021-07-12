@@ -28,10 +28,9 @@ function refuel()
       turtle.select(n)
       local data = turtle.getItemDetail()
       if data and data.count > 0 and hasValue(fuelList, data.name) then
-        if turtle.refuel(1) then
-          turtle.select(1)
-          return true
-        end
+        turtle.refuel(1)
+        turtle.select(1)
+        return true
       end
     end
     turtle.select(1)
@@ -45,7 +44,17 @@ function refuel()
   end
 end
 
-function selectBlock(name)
+function selectEmptySlot()
+  for n = 1, 16 do
+    if turtle.getItemCount(n) == 0 then
+      turtle.select(n)
+      return true
+    end
+  end
+  return false
+end
+
+function selectItem(name)
   for n = 1, 16 do
     turtle.select(n)
     local data = turtle.getItemDetail()
@@ -56,10 +65,10 @@ function selectBlock(name)
   return false
 end
 
-function place(name, title, dir)
-  if not selectBlock(name) then
-    print("Add " .. title .. " to continue")
-    while not selectBlock(name) do
+function place(name, dir)
+  if not selectItem(name) then
+    print("Ajouter " .. name .. " pour continuer")
+    while not selectItem(name) do
       os.pullEvent("turtle_inventory")
     end
   end
@@ -72,14 +81,42 @@ function place(name, title, dir)
   end
 end
 
-function dropBadItems()
+function suckItem(dir, type, nb)
+  if not selectEmptySlot() then
+    print("Vider l'inventaire de la turtle pour continuer")
+    while not selectEmptySlot() do
+      os.pullEvent("turtle_inventory")
+    end
+  end
+  if dir == "up" then
+    turtle.suckUp()
+  elseif dir == "down" then
+    turtle.suckDown()
+  else
+    turtle.suck()
+  end
+  local data = turtle.getItemDetail()
+  if data and hasValue(arr, data.name) then
+end
+
+function dropAllItems(arr, dir)
   for n = 1, 16 do
     turtle.select(n)
     local data = turtle.getItemDetail()
-    if data and hasValue(dropItemList, data.name) then
-      turtle.dropDown(data.count)
+    if data and hasValue(arr, data.name) then
+      if dir == "down" then
+        turtle.dropDown()
+      elseif dir == "up" then
+        turtle.dropUp()
+      else
+        turtle.drop()
+      end
     end
   end
+end
+
+function dropBadItems()
+  dropAllItems(dropItemList, "down")
 end
 
 function digAndForward(nb)
@@ -140,8 +177,10 @@ end
 
 return {
   refuel = refuel,
-  selectBlock = selectBlock,
+  selectItem = selectItem,
   place = place,
+  suckItem = suckItem,
+  dropAllItems = dropAllItems,
   dropBadItems = dropBadItems,
   digAndForward = digAndForward,
   digUpAndUp = digUpAndUp,
