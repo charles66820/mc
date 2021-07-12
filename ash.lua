@@ -71,18 +71,18 @@ function place()
   turtle.turnLeft()
   tfun.digAndForward(1)
 
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
+  for i = 1, 2 do
+    turtle.turnRight()
+    tfun.place("forestry:wood_pile", "front")
+  end
   tfun.place("forestry:wood_pile", "up")
   tfun.turnAround()
   tfun.digAndForward(1)
 
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
+  for i = 1, 2 do
+    turtle.turnRight()
+    tfun.place("forestry:wood_pile", "front")
+  end
   tfun.digUpAndUp(1)
   tfun.place("forestry:wood_pile", "up")
   tfun.digDownAndDown(1)
@@ -90,39 +90,29 @@ function place()
   tfun.turnAround()
   tfun.digAndForward(1)
 
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
+  for i = 1, 2 do
+    turtle.turnRight()
+    tfun.place("forestry:wood_pile", "front")
+  end
   tfun.place("forestry:wood_pile", "up")
   tfun.turnAround()
   tfun.digAndForward(1)
 
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
+  for i = 1, 2 do
+    turtle.turnRight()
+    tfun.place("forestry:wood_pile", "front")
+  end
   turtle.turnRight()
   tfun.digAndForward(1)
 
   tfun.place("forestry:wood_pile", "front")
-  turtle.turnLeft()
-  tfun.digAndForward(1)
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.place("forestry:wood_pile", "up")
-
-  turtle.turnLeft()
-  tfun.digAndForward(1)
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.place("forestry:wood_pile", "up")
-
-  turtle.turnLeft()
-  tfun.digAndForward(1)
-  turtle.turnRight()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.place("forestry:wood_pile", "up")
+  for i = 1, 3 do
+    turtle.turnLeft()
+    tfun.digAndForward(1)
+    turtle.turnRight()
+    tfun.place("forestry:wood_pile", "front")
+    tfun.place("forestry:wood_pile", "up")
+  end
 
   turtle.turnLeft()
   tfun.digAndForward(1)
@@ -130,21 +120,13 @@ function place()
   tfun.place("forestry:wood_pile", "front")
 
   turtle.turnRight()
-  tfun.digAndForward(1)
-  tfun.turnAround()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.turnAround()
 
-  tfun.digAndForward(1)
-  tfun.turnAround()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.turnAround()
-
-  tfun.digAndForward(1)
-  tfun.turnAround()
-  tfun.place("forestry:wood_pile", "front")
-  tfun.turnAround()
-
+  for i = 1, 3 do
+    tfun.digAndForward(1)
+    tfun.turnAround()
+    tfun.place("forestry:wood_pile", "front")
+    tfun.turnAround()
+  end
   tfun.digAndForward(1)
   tfun.turnAround()
   tfun.place("forestry:wood_pile", "front")
