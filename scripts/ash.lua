@@ -165,7 +165,7 @@ function mainLoop()
   refill()
   while true do
     place()
-    os.sleep(900)
+    os.sleep(1200)
     collect()
     refill()
   end
