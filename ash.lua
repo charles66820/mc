@@ -7,9 +7,9 @@ local args = {...}
 -- functions
 function refill()
   tfun.dropAllItems({"forestry:ash"}, "front")
-  turtle.turnRight()
-  tfun.dropAllItems({"minecraft:charcoal"}, "front")
-  tfun.suckItem("front", "minecraft:charcoal", 64)
+  turtle.turnLeft()
+  tfun.dropAllItems({"minecraft:coal"}, "front")
+  tfun.suckItem("front", "minecraft:coal", 64)
   tfun.turnAround()
   tfun.suckItem("front", "forestry:wood_pile", 35)
   if not tfun.selectItem("minecraft:flint_and_steel") then

@@ -97,7 +97,7 @@ function suckItem(dir, name, nb)
   end
   -- Check if is good item
   local data = turtle.getItemDetail()
-  if not data or name == data.name then
+  if not data or name ~= data.name then
     if not data then
       print("Aucun item collecter!")
       print("Ajoutez-en puis écrivez \"fixer\"")
