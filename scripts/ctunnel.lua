@@ -9,7 +9,7 @@ if #args == 1 then
   width = tonumber(args[1])
 elseif #args > 1 then
   print("Usage: ", args[0], " <longeur>")
-  os.exit(128)
+  return 128
 end
 
 if width <= 0 then

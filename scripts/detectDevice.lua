@@ -8,7 +8,7 @@ if #args == 1 then
   side = args[1]
 elseif #args > 1 then
   print("Usage: ", args[0], " <side>")
-  os.exit(128)
+  return 128
 end
 
 while side == nil or not cfun.hasValue({"front", "back", "left", "right", "top", "bottom"}, side) do
@@ -19,7 +19,7 @@ end
 -- Main
 if not peripheral.isPresent(side) then
   cfun.printProcess("Device is not present")
-  os.exit(1)
+  return 1
 end
 
 cfun.printProcess(peripheral.getType(side) .. " found!")
