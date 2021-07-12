@@ -1,5 +1,5 @@
 local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
-local libs = {"computerLib.lua", "libs/turtleLib.lua", "libs/screenLib.lua"}
+local libs = {"computerLib.lua", "turtleLib.lua", "screenLib.lua"}
 local scripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua",
                  "ash.lua", "detectDevice.lua", "imgTest.lua"}
 local workdir = "/bitacu/"
@@ -28,15 +28,15 @@ fs.makeDir(workdir)
 loadFiles(libsDirName, libs)
 loadFiles(scriptsDirName, scripts)
 
-local startupContent = "local libs = textutils.unserialize(\"" .. textutils.serialize(libs) .. "\")\n"
+local startupContent = "local libs = " .. textutils.serialize(libs) .. "\n"
 startupContent = startupContent .. "local workdir = \"" .. workdir .. "\"\n"
 startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\"\n"
 startupContent = startupContent .. "local scriptsDirName = \"" .. scriptsDirName .. "\"\n"
 startupContent = startupContent .. [[
-  for i, filename in ipairs(libs) do
-    os.loadAPI(workdir .. libsDirName .. filename)
-  end
-  shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
+for i, filename in ipairs(libs) do
+  os.loadAPI(workdir .. libsDirName .. filename)
+end
+shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
 ]]
 
 local startup = fs.open("startup", "w")
