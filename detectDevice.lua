@@ -29,13 +29,6 @@ for i, v in ipairs(peripheral.getMethods(side)) do
 end
 
 while true do
-  local event, srollDirection, x, y = os.pullEvent("mouse_scroll")
-  print("mouse_scroll: " .. tostring(scrollDirection) .. ", " .. "X: " .. tostring(x) .. ", " .. "Y: " .. tostring(y))
-  print(scrollDirection)
-
-  if scrollDirection == -1 then
-    term.scroll(1)
-  elseif scrollDirection == 1 then
-    term.scroll(-1)
-  end
+  local event, scrollDirection, x, y = os.pullEvent("mouse_scroll")
+  term.scroll(scrollDirection)
 end
