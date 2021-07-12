@@ -24,7 +24,9 @@ end
 
 cfun.printProcess(peripheral.getType(side) .. " found!")
 
-print(peripheral.getMethods(side))
+for i, v in ipairs(peripheral.getMethods(side)) do
+  print(i .. ". " .. v)
+end
 
 while true do
   local event, srollDirection, x, y = os.pullEvent("mouse_scroll")
