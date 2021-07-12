@@ -1,3 +1,6 @@
+local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
+local workdir = "/bitacu/"
+
 function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
@@ -21,7 +24,21 @@ function printProcess(msg)
   term.setBackgroundColor(saveBgColor)
 end
 
+function loadFile(name)
+  local download = http.get(filesServerUrl .. name)
+  if download then
+    print("Fetching " .. name)
+    local file = fs.open(workdir .. name, "w")
+    file.write(download.readAll())
+    file.close()
+    download.close()
+  else
+    print("Couldn't get " .. filename)
+  end
+end
+
 return {
   hasValue = hasValue,
-  printProcess = printProcess
+  printProcess = printProcess,
+  loadFile
 }
