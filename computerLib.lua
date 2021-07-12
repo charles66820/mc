@@ -1,5 +1,6 @@
 function hasValue(arr, val)
   for i, v in ipairs(arr) do
+    print("Debug v:" .. v .. " val: " .. val)
     if v == val then
       return true
     end
