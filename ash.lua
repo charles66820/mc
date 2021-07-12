@@ -15,7 +15,7 @@ function refill()
   if not tfun.selectItem("minecraft:flint_and_steel") then
     tfun.suckItem("down", "minecraft:flint_and_steel", 1)
   end
-  turtle.turnLeft()
+  turtle.turnRight()
 end
 
 function collect()
