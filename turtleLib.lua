@@ -138,20 +138,6 @@ function turnDigAndForwardRight()
   turtle.turnRight()
 end
 
-function printProcess(msg)
-  local x, y = term.getCursorPos()
-  local saveColor = term.getTextColor()
-  local saveBgColor = term.getBackgroundColor()
-  term.setCursorPos(1, 1)
-  term.clearLine()
-  term.setTextColor(colors.black)
-  term.setBackgroundColor(colors.white)
-  term.write(msg)
-  term.setCursorPos(x, y)
-  term.setTextColor(saveColor)
-  term.setBackgroundColor(saveBgColor)
-end
-
 return {
   refuel = refuel,
   selectBlock = selectBlock,
@@ -162,6 +148,5 @@ return {
   digDownAndDown = digDownAndDown,
   turnAround = turnAround,
   turnDigAndForwardLeft = turnDigAndForwardLeft,
-  turnDigAndForwardRight = turnDigAndForwardRight,
-  printProcess = printProcess
+  turnDigAndForwardRight = turnDigAndForwardRight
 }

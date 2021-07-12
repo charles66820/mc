@@ -1,5 +1,5 @@
-local url = "https://raw.githubusercontent.com/charles66820/mc/master/"
-local files = {"startup.lua", "turtleLib.lua", "ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua", "ash.lua"}
+local url = "https://raw.githubusercontent.com/charles66820/mc/main/"
+local files = {"startup.lua", "turtleLib.lua", "computerLib.lua", "ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua", "ash.lua", "screenLib.lua", "detectDevide.lua", "imgTest.lua"}
 
 local workdir = "/bitacu/"
 

@@ -1,4 +1,5 @@
 -- Mine a circle tunnel
+local cfun = require("computerLib")
 local tfun = require("turtleLib")
 -- Args and vars def
 local width = 0
@@ -83,7 +84,7 @@ end
 function mainLoop()
   for i = 1, width do
     circle()
-    tfun.printProcess("Longeur: " .. i .. "/" .. width)
+    cfun.printProcess("Longeur: " .. i .. "/" .. width)
   end
 end
 

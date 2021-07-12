@@ -1,4 +1,5 @@
 -- Farm ash
+local cfun = require("computerLib")
 local tfun = require("turtleLib")
 -- Args and vars def
 local args = {...}
@@ -21,7 +22,7 @@ function placeFlintAndSteel()
 end
 
 function collect()
-  tfun.printProcess("Collecting...")
+  cfun.printProcess("Collecting...")
   tfun.digAndForward(2)
   turtle.turnLeft()
   tfun.digAndForward(2)
@@ -62,7 +63,7 @@ function collect()
 end
 
 function place()
-  tfun.printProcess("Placing...")
+  cfun.printProcess("Placing...")
   tfun.digAndForward(2)
 
   turtle.turnLeft()

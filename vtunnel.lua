@@ -1,4 +1,5 @@
 -- Mine a circle vertical tunnel
+local cfun = require("computerLib")
 local tfun = require("turtleLib")
 -- Args and vars def
 local deeper = 0
@@ -65,7 +66,7 @@ end
 function mainLoop()
   for i = 1, deeper do
     circle()
-    tfun.printProcess("Profondeur: " .. i .. "/" .. deeper)
+    cfun.printProcess("Profondeur: " .. i .. "/" .. deeper)
   end
 end
 

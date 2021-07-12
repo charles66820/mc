@@ -1,4 +1,5 @@
 -- Dig a room
+local cfun = require("computerLib")
 local tfun = require("turtleLib")
 
 -- Args and vars def
@@ -48,7 +49,7 @@ end
 
 -- functions
 function digCeil()
-  tfun.printProcess("Digging ceil...")
+  cfun.printProcess("Digging ceil...")
   if height >= 3 then
     tfun.digUpAndUp(height - 2)
   end

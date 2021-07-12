@@ -1,4 +1,5 @@
 -- Dig a rectangle
+local cfun = require("computerLib")
 local tfun = require("turtleLib")
 -- Args and vars def
 local width = 0
@@ -73,7 +74,7 @@ function line(h)
     turtle.digDown()
   end
   for i = 1, length - 1 do
-    -- tfun.printProcess("Largeur: " .. (i + 1) .. "/" .. length)
+    -- cfun.printProcess("Largeur: " .. (i + 1) .. "/" .. length)
     tfun.digAndForward(1)
     if h == 3 then
       turtle.digUp()
@@ -116,7 +117,7 @@ function layers(n, h)
           tfun.turnDigAndForwardLeft()
         end
       end
-      tfun.printProcess("Longeur: " .. (lwidth + 1) .. "/" .. width .. " Layer: " .. i .. "/" .. nbLayer)
+      cfun.printProcess("Longeur: " .. (lwidth + 1) .. "/" .. width .. " Layer: " .. i .. "/" .. nbLayer)
       line(h)
       lwidth = lwidth + 1
     until not (lwidth < width)
