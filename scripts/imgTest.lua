@@ -3,4 +3,4 @@ local sfun = screenLib
 local screen = peripheral.wrap("right")
 term.redirect(screen)
 
-sfun.loadIcon("btn", 0, 0)
+sfun.loadIcon("logo", 0, 0)

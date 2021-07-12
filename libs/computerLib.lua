@@ -33,7 +33,7 @@ function loadFile(name)
     file.close()
     download.close()
   else
-    print("Couldn't get " .. filename)
+    print("Couldn't get " .. name)
   end
 end
 
