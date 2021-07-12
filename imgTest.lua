@@ -1,4 +1,4 @@
-local screen = peripheral.wrap("rigth")
+local screen = peripheral.wrap("right")
 term.redirect(screen)
 
 local imageUrl = "https://cdn.discordapp.com/avatars/166236649007611904/61a99da3f8076594370c69048878aa17.png"
