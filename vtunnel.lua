@@ -17,7 +17,7 @@ elseif #args == 2 then
   end
 elseif #args > 2 then
   print("Usage: ", args[0], " <deeper> <invert>")
-  os.exit()
+  os.exit(128)
 end
 
 if deeper <= 0 then

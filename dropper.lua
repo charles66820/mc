@@ -11,7 +11,7 @@ elseif #args == 2 then
   nbDrop = tonumber(args[2])
 elseif #args > 2 then
   print("Usage: ", args[0], " <time> <nbDrop>")
-  os.exit()
+  os.exit(128)
 end
 
 if time <= 0 then

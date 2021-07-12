@@ -29,7 +29,7 @@ elseif #args == 4 then
   end
 elseif #args > 4 then
   print("Usage: ", args[0], " <width> <length> <height> <haveCeil>")
-  os.exit()
+  os.exit(128)
 end
 
 if width <= 0 then
