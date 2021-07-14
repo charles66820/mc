@@ -89,11 +89,11 @@ function suckItem(dir, name, nb)
     end
   end
   if dir == "up" then
-    turtle.suckUp()
+    turtle.suckUp(nb)
   elseif dir == "down" then
-    turtle.suckDown()
+    turtle.suckDown(nb)
   else
-    turtle.suck()
+    turtle.suck(nb)
   end
   -- Check if is good item
   local data = turtle.getItemDetail()
