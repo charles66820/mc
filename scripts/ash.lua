@@ -165,7 +165,11 @@ function mainLoop()
   refill()
   while true do
     place()
-    os.sleep(1200)
+    cfun.printProcess("Attente 0 / 20 minute")
+    for i = 1, 20 do
+      cfun.printProcess("Attente " .. i .. " / 20 minute")
+      os.sleep(60)
+    end
     collect()
     refill()
   end
