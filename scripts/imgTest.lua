@@ -27,9 +27,4 @@ local screen = peripheral.wrap(side)
 
 term.redirect(screen)
 sfun.loadIcon("logo", 0, 0)
-term.reset()
-
-os.sleep(20)
-
-local image = screen.paintutils.loadImage("/bitacu/icon/logo.bmp")
-screen.paintutils.drawImage(image, 0, 0)
+term.restore()
