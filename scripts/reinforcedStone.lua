@@ -7,9 +7,9 @@ local args = {...}
 function start()
   while true do
     turtle.turnRight()
-    tfun.dropAllItems({"ic2:resource"}, "front")
-    turtle.turnRight()
     tfun.suckItem("front", "ic2:scaffold", 1)
+    turtle.turnRight()
+    tfun.dropAllItems({"ic2:resource"}, "front")
     tfun.turnAround()
     tfun.dropAllItems({"ic2:foam_sprayer"}, "down")
     tfun.suckItem("up", "ic2:foam_sprayer", 1)
