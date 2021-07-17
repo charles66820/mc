@@ -166,7 +166,7 @@ function mainLoop()
   while true do
     place()
     cfun.printProcess("Attente 0 / 20 minute")
-    for i = 1, 20 do
+    for i = 1, 21 do
       cfun.printProcess("Attente " .. i .. " / 20 minute")
       os.sleep(60)
     end
