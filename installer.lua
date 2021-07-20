@@ -7,7 +7,6 @@ local computerScripts = {"imgTest.lua", "screen.lua"}
 local workdir = "/bitacu/"
 local libsDirName = "libs/"
 local scriptsDirName = "scripts/"
-local scriptRunAtStart = ""
 local deviceType = ""
 
 -- Args
@@ -49,7 +48,6 @@ elseif deviceType == "computer" then
   end
 elseif deviceType == "redstoneReceiver" then
   table.insert(scripts, "redstoneReceiver.lua")
-  scriptRunAtStart = "redstoneReceiver"
 else -- all
   table.insert(libs, "turtleLib.lua")
   table.insert(libs, "screenLib.lua")
@@ -78,8 +76,10 @@ end
 shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
 ]]
 
-if scriptRunAtStart then
-  startupContent = startupContent .. "shell.run(\"" .. scriptRunAtStart .. "\")\n"
+if fs.exists("/.run") then
+  local file = fs.open("/.run", "r")
+  startupContent = startupContent .. "shell.run(\"" .. file.readAll() .. "\")\n"
+  file.close()
 end
 
 local startup = fs.open("startup", "w")
