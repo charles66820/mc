@@ -91,12 +91,12 @@ local screen = peripheral.wrap("left")
 for i, v in ipairs(mobs) do
   local saveColor = term.getTextColor()
   local saveBgColor = term.getBackgroundColor()
-  screen.setCursorPos(v.x, v.textY)
+  screen.setCursorPos(v.x, v.y + math.floor(height / 2) - 1)
   term.setTextColor(colors.white)
   term.setBackgroundColor(colors.red)
   screen.write(v.text)
   if v.text2 ~= nill then
-    screen.setCursorPos(v.x, v.textY + 1)
+    screen.setCursorPos(v.x, v.y + math.floor(height / 2))
     screen.write(v.text2)
   end
   term.setTextColor(saveColor)
