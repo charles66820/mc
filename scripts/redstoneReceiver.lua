@@ -8,11 +8,11 @@ local keywordOff = nil
 
 local args = {...}
 if #args == 5 then
-  rednetSide = args[0]
-  redstoneSide = args[1]
-  protocol = args[2]
-  keywordOn = args[3]
-  keywordOff = args[4]
+  rednetSide = args[1]
+  redstoneSide = args[2]
+  protocol = args[3]
+  keywordOn = args[4]
+  keywordOff = args[5]
 else
   print("Usage: ", args[0], " <rednetSide> <redstoneSide> <protocol> <keywordOn> <keywordOff>")
   return 128
