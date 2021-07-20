@@ -89,18 +89,18 @@ local mobs = {
 local screen = peripheral.wrap("left")
 
 for i, v in ipairs(mobs) do
-  local saveColor = term.getTextColor()
-  local saveBgColor = term.getBackgroundColor()
+  local saveColor = screen.getTextColor()
+  local saveBgColor = screen.getBackgroundColor()
   screen.setCursorPos(v.x, v.y + math.floor(height / 2) - 1)
-  term.setTextColor(colors.white)
-  term.setBackgroundColor(colors.red)
+  screen.setTextColor(colors.white)
+  screen.setBackgroundColor(colors.red)
   screen.write(v.text)
   if v.text2 ~= nill then
     screen.setCursorPos(v.x, v.y + math.floor(height / 2))
     screen.write(v.text2)
   end
-  term.setTextColor(saveColor)
-  term.setBackgroundColor(saveBgColor)
+  screen.setTextColor(saveColor)
+  screen.setBackgroundColor(saveBgColor)
 end
 
 while true do
@@ -108,22 +108,22 @@ while true do
   for i, v in ipairs(mobs) do
     if x >= v.x and x < v.x + width and y >= v.y and y < v.y + height then
       mobs[i].active = not mobs[i].active
-      local saveColor = term.getTextColor()
-      local saveBgColor = term.getBackgroundColor()
+      local saveColor = screen.getTextColor()
+      local saveBgColor = screen.getBackgroundColor()
       screen.setCursorPos(v.x, v.y + math.floor(height / 2) - 1)
-      term.setTextColor(colors.white)
+      screen.setTextColor(colors.white)
       if mobs[i].active then
-        term.setBackgroundColor(colors.green)
+        screen.setBackgroundColor(colors.green)
       else
-        term.setBackgroundColor(colors.red)
+        screen.setBackgroundColor(colors.red)
       end
       screen.write(v.text)
       if v.text2 ~= nill then
         screen.setCursorPos(v.x, v.y + math.floor(height / 2))
         screen.write(v.text2)
       end
-      term.setTextColor(saveColor)
-      term.setBackgroundColor(saveBgColor)
+      screen.setTextColor(saveColor)
+      screen.setBackgroundColor(saveBgColor)
     end
     if mobs[i].active then
       rednet.broadcast(v.name .. "On","spawner")
