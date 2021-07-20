@@ -1,10 +1,12 @@
 rednet.open("right")
 
+local width = 12
+local height = 4
+
 local mobs = {
   {
     x = 1,
     y = 1,
-    textY = 7,
     name = "sheep",
     text = "sheep",
     text2 = nil,
@@ -13,7 +15,6 @@ local mobs = {
   {
     x = 13,
     y = 1,
-    textY = 7,
     name = "chicken",
     text = "chicken",
     text2 = nil,
@@ -22,7 +23,6 @@ local mobs = {
   {
     x = 25,
     y = 1,
-    textY = 7,
     name = "stonelings",
     text = "stonelings",
     text2 = nil,
@@ -31,7 +31,6 @@ local mobs = {
   {
     x = 37,
     y = 1,
-    textY = 7,
     name = "skeleton",
     text = "skeleton",
     text2 = nil,
@@ -40,7 +39,6 @@ local mobs = {
   {
     x = 49,
     y = 1,
-    textY = 7,
     name = "cow",
     text = "cow",
     text2 = nil,
@@ -48,8 +46,7 @@ local mobs = {
   },
   {
     x = 1,
-    y = 1,
-    textY = 19,
+    y = 5,
     name = "frog",
     text = "frog",
     text2 = nil,
@@ -57,8 +54,7 @@ local mobs = {
   },
   {
     x = 13,
-    y = 1,
-    textY = 19,
+    y = 5,
     name = "pig",
     text = "pig",
     text2 = nil,
@@ -66,8 +62,7 @@ local mobs = {
   },
   {
     x = 25,
-    y = 1,
-    textY = 19,
+    y = 5,
     name = "witherSkeleton",
     text = "wither",
     text2 = "skeleton",
@@ -75,8 +70,7 @@ local mobs = {
   },
   {
     x = 37,
-    y = 1,
-    textY = 19,
+    y = 5,
     name = "enderman",
     text = "enderman",
     text2 = nil,
@@ -84,8 +78,7 @@ local mobs = {
   },
   {
     x = 49,
-    y = 1,
-    textY = 19,
+    y = 5,
     name = "witch",
     text = "witch",
     text2 = nil,
@@ -113,11 +106,11 @@ end
 while true do
   local event, side, x, y = os.pullEvent("monitor_touch")
   for i, v in ipairs(mobs) do
-    if x >= v.x and x < v.x + 12 and y >= v.y and y < v.y + 12 then
+    if x >= v.x and x < v.x + width and y >= v.y and y < v.y + height then
       mobs[i].active = not mobs[i].active
       local saveColor = term.getTextColor()
       local saveBgColor = term.getBackgroundColor()
-      screen.setCursorPos(v.x, v.textY)
+      screen.setCursorPos(v.x, v.y + math.floor(height / 2) - 1)
       term.setTextColor(colors.white)
       if mobs[i].active then
         term.setBackgroundColor(colors.green)
@@ -126,7 +119,7 @@ while true do
       end
       screen.write(v.text)
       if v.text2 ~= nill then
-        screen.setCursorPos(v.x, v.textY + 1)
+        screen.setCursorPos(v.x, v.y + math.floor(height / 2))
         screen.write(v.text2)
       end
       term.setTextColor(saveColor)
