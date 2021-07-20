@@ -1,10 +1,24 @@
+-- vars def
 local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
-local libs = {"computerLib.lua", "turtleLib.lua", "screenLib.lua"}
-local scripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "setName.lua",
-                 "ash.lua", "detectDevice.lua", "imgTest.lua", "screen.lua", "reinforcedStone.lua"}
+local libs = {"computerLib.lua"}
+local scripts = {"setName.lua", "detectDevice.lua"}
+local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "ash.lua", "reinforcedStone.lua"}
+local computerScripts = {"imgTest.lua", "screen.lua"}
 local workdir = "/bitacu/"
 local libsDirName = "libs/"
 local scriptsDirName = "scripts/"
+local scriptRunAtStart = ""
+local deviceType = ""
+
+-- Args
+local args = {...}
+
+if #args == 1 then
+  deviceType = args[1]
+else
+  print("Usage: ", args[0], " <deviceType>")
+  return 128
+end
 
 -- Functions
 function loadFiles(prefix, files)
@@ -23,6 +37,31 @@ function loadFiles(prefix, files)
 end
 
 -- Main
+if deviceType == "turtle" then
+  table.insert(libs, "turtleLib.lua")
+  for i, v in ipairs(turtleScripts) do
+    table.insert(scripts, v)
+  end
+elseif deviceType == "computer" then
+  table.insert(libs, "screenLib.lua")
+  for i, v in ipairs(computerScripts) do
+    table.insert(scripts, v)
+  end
+elseif deviceType == "redstoneReceiver" then
+  table.insert(scripts, "redstoneReceiver.lua")
+  scriptRunAtStart = "redstoneReceiver"
+else -- all
+  table.insert(libs, "turtleLib.lua")
+  table.insert(libs, "screenLib.lua")
+  for i, v in ipairs(computerScripts) do
+    table.insert(scripts, v)
+  end
+  for i, v in ipairs(turtleScripts) do
+    table.insert(scripts, v)
+  end
+  table.insert(scripts, "redstoneReceiver.lua")
+end
+
 fs.delete(workdir)
 fs.makeDir(workdir)
 loadFiles(libsDirName, libs)
@@ -38,6 +77,10 @@ for i, filename in ipairs(libs) do
 end
 shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
 ]]
+
+if scriptRunAtStart then
+  startupContent = startupContent .. "shell.run(\"" .. scriptRunAtStart .. "\")\n"
+end
 
 local startup = fs.open("startup", "w")
 startup.write(startupContent)
