@@ -63,11 +63,11 @@ function init()
 end
 
 function line(h)
-  tfun.place(blockType, "front")
+  tfun.place(blockType, "down")
   for i = 1, length - 1 do
     -- cfun.printProcess("Largeur: " .. (i + 1) .. "/" .. length)
     tfun.digAndForward(1)
-    tfun.place(blockType, "front")
+    tfun.place(blockType, "down")
   end
 end
 
