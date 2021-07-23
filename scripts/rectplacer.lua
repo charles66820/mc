@@ -87,7 +87,7 @@ function layers(h)
           tfun.turnDigAndForwardLeft()
         end
       end
-      cfun.printProcess("Longeur: " .. (lwidth + 1) .. "/" .. width .. " Layer: " .. i .. "/" .. nbLayer)
+      cfun.printProcess("Longeur: " .. (lwidth + 1) .. "/" .. width .. " Height: " .. i .. "/" .. height)
       line()
       lwidth = lwidth + 1
     until not (lwidth < width)
