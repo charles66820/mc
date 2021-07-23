@@ -81,7 +81,7 @@ function layers(h)
     local lwidth = 0
     repeat
       if lwidth ~= 0 then
-        if i % 2 == pivo then
+        if i % 2 == 1 then
           tfun.turnDigAndForwardRight()
         else
           tfun.turnDigAndForwardLeft()
