@@ -60,11 +60,22 @@ else -- all
   table.insert(scripts, "redstoneReceiver.lua")
 end
 
+-- Download scripts and libs
 fs.delete(workdir)
 fs.makeDir(workdir)
 loadFiles(libsDirName, libs)
 loadFiles(scriptsDirName, scripts)
 
+-- Configs file
+local config = {
+  dropBadItems = true
+}
+
+local configFile = fs.open("/config", "w")
+configFile.write(textutils.serialize(config))
+configFile.close()
+
+-- Startup file
 local startupContent = "local libs = " .. textutils.serialize(libs) .. "\n"
 startupContent = startupContent .. "local workdir = \"" .. workdir .. "\"\n"
 startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\"\n"

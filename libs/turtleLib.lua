@@ -2,9 +2,9 @@ local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:and
                       "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"}
 local fuelList = {"minecraft:coal", "minecraft:charcoal"}
 
-config = {
-  dropBadItems = true
-}
+local configFile = fs.open("/config", "r")
+local config = textutils.unserialize(configFile.readAll())
+configFile.close()
 
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
