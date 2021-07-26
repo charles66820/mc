@@ -74,13 +74,12 @@ for i, filename in ipairs(libs) do
   os.loadAPI(workdir .. libsDirName .. filename)
 end
 shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
-]]
-
 if fs.exists("/.run") then
   local file = fs.open("/.run", "r")
-  startupContent = startupContent .. "shell.run(\"" .. file.readAll() .. "\")\n"
+  shell.run(file.readAll())
   file.close()
 end
+]]
 
 local startup = fs.open("startup", "w")
 startup.write(startupContent)
