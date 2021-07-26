@@ -1,7 +1,7 @@
 -- vars def
 local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
 local libs = {"computerLib.lua"}
-local scripts = {"setName.lua", "detectDevice.lua"}
+local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua"}
 local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
 local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua"}
 local workdir = "/bitacu/"
