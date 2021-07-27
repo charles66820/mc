@@ -1,5 +1,8 @@
 -- Draconic evolution reactor secure program
 local cfun = computerLib
+-- Settings vars
+local alertTemperature = 8000 -- 2000?
+
 -- Args and vars def
 local redstoneOutputSide = nil
 local protocol = nil
@@ -36,14 +39,30 @@ local file = fs.open("/.run", "w")
 file.write(cmd)
 file.close()
 
+function periphSearch(type)
+  for i, name in ipairs(peripheral.getNames()) do
+    if peripheral.getType(name) == type then
+        return peripheral.wrap(name)
+    end
+  end
+  return nil
+end
+
+
 -- Security check
 local reactor = nil
 while reactor == nil do
-  reactor = peripheral.wrap("back")
+  reactor = periphSearch("flux_gate")
   while true do
     local info = reactor.getReactorInfo()
     if info.status == "beyond_hope" then
       redstone.setOutput(redstoneOutputSide, true)
+    end
+    local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
+    local field = (info.fieldStrength * 100) / info.maxFieldStrength
+    -- add "warming_up" ?
+    if info.status ~= "running" and (info.temperature >= alertTemperature or saturation <= 5 or field <= 5) then
+      reactor.stopReactor()
     end
   end
 end
