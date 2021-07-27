@@ -19,16 +19,12 @@ else
   return 128
 end
 
-while redstoneOutputSide == nil or not cfun.hasValue({"front", "back", "left", "right", "top", "down"}, redstoneOutputSide) do
+while redstoneOutputSide == nil or not cfun.hasValue(redstone.getSides(), redstoneOutputSide) do
   print("Redstone output side :")
   redstoneOutputSide = read()
 end
 
 cmd = "reactorSecure " .. redstoneOutputSide
-
-if redstoneOutputSide == "front" then
-  redstoneOutputSide = ""
-end
 
 -- save current run program in .run
 if protocol ~= nil then

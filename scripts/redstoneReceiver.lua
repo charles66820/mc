@@ -1,4 +1,5 @@
 -- Redstone reciver
+local cfun = computerLib
 -- Args and vars def
 local rednetSide = nil
 local redstoneSide = nil
@@ -8,7 +9,7 @@ local keywordOff = nil
 
 local args = {...}
 if #args == 5 then
-  rednetSide = args[1]
+  rednetSide = args[1] -- TODO: auto ?
   redstoneSide = args[2]
   protocol = args[3]
   keywordOn = args[4]
@@ -16,6 +17,11 @@ if #args == 5 then
 else
   print("Usage: ", args[0], " <rednetSide> <redstoneSide> <protocol> <keywordOn> <keywordOff>")
   return 128
+end
+
+while redstoneSide == nil or not cfun.hasValue(redstone.getSides(), redstoneSide) do
+  print("Redstone output side :")
+  redstoneSide = read()
 end
 
 -- save current run program in .run
