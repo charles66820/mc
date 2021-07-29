@@ -35,20 +35,10 @@ local file = fs.open("/.run", "w")
 file.write(cmd)
 file.close()
 
-function periphSearch(type)
-  for i, name in ipairs(peripheral.getNames()) do
-    if peripheral.getType(name) == type then
-        return peripheral.wrap(name)
-    end
-  end
-  return nil
-end
-
-
 -- Security check
 local reactor = nil
 while reactor == nil do
-  reactor = periphSearch("flux_gate")
+  reactor = peripheral.find("flux_gate")
   while true do
     local info = reactor.getReactorInfo()
     if info.status == "beyond_hope" then

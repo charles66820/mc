@@ -1,4 +1,21 @@
-rednet.open("right")
+function sideSearch(type)
+  for i, side in ipairs(peripheral.getNames()) do
+    if peripheral.getType(side) == type then
+      return side
+    end
+  end
+  return nil
+end
+
+local rednetSide = sideSearch("modem")
+
+if rednetSide == nil then
+  print("Can't connet to rednet!")
+  print("Modem not found")
+  return 1
+end
+
+rednet.open(rednetSide)
 
 local width = 12
 local height = 4
@@ -86,7 +103,12 @@ local mobs = {
   }
 }
 
-local screen = peripheral.wrap("left")
+local screen = peripheral.find("monitor")
+
+if screen == nil then
+  print("Monitor not found!")
+  return 1
+end
 
 for i, v in ipairs(mobs) do
   local saveColor = screen.getTextColor()

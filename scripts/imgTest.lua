@@ -12,7 +12,7 @@ elseif #args > 1 then
   return 128
 end
 
-while side == nil or not cfun.hasValue({"front", "back", "left", "right", "top", "down"}, side) do
+while side == nil or not cfun.hasValue(peripheral.getNames(), side) do
   print("Side :")
   side = read()
 end
