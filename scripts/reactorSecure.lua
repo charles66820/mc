@@ -54,7 +54,7 @@ end
 local reactor = nil
 while reactor == nil do
   cfun.printProcess("Serching reactor...")
-  reactor = peripheral.find("reactor_component")
+  reactor = peripheral.find("draconic_reactor")
 end
 cfun.printProcess("Reactor found!")
 
