@@ -168,10 +168,12 @@ function start()
 end
 
 function inventoryListener()
-  os.pullEvent("turtle_inventory")
-  -- Clean inventory
-  if config.dropBadItems then
-   tfun.dropBadItems()
+  while true do
+    os.pullEvent("turtle_inventory")
+    -- Clean inventory
+    if config.dropBadItems then
+    tfun.dropBadItems()
+    end
   end
 end
 
