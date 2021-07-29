@@ -69,8 +69,7 @@ function start()
       redstone.setOutput(redstoneOutputSide, true)
     end
     local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
-    print(info.status ~= "running" and info.status ~= "warming_up")
-    if info.status ~= "running" and info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20) then
+    if info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20) then
       reactor.stopReactor()
       sendAlert()
     end
