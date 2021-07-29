@@ -40,5 +40,5 @@ end
 return {
   hasValue = hasValue,
   printProcess = printProcess,
-  loadFile
+  loadFile = loadFile
 }
