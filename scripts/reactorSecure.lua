@@ -35,24 +35,65 @@ local file = fs.open("/.run", "w")
 file.write(cmd)
 file.close()
 
+local rednetSide = cfun.sideSearch("modem")
+
+if rednetSide ~= nil then
+  rednet.open(rednetSide)
+end
+
+function sendAlert()
+  if protocol ~= nil and rednetSide ~= nil then
+    if not rednet.isOpen(rednetSide) then
+      rednet.open(rednetSide)
+    end
+    rednet.broadcast("solarReactorAlert", protocol)
+  end
+end
+
 -- Security check
 local reactor = nil
 while reactor == nil do
+  cfun.printProcess("Serching reactor...")
   reactor = peripheral.find("flux_gate")
 end
-while true do
-  -- fix for "Too Long Without Yielding"
-  os.queueEvent("randomEvent")
-  os.pullEvent()
-  --
-  local info = reactor.getReactorInfo()
-  if info.status == "beyond_hope" then
-    redstone.setOutput(redstoneOutputSide, true)
-  end
-  local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
-  local field = (info.fieldStrength * 100) / info.maxFieldStrength
-  -- add "warming_up" ?
-  if info.status ~= "running" and (info.temperature >= alertTemperature or saturation <= 5 or field <= 5) then
-    reactor.stopReactor()
+cfun.printProcess("Reactor found!")
+
+function start()
+  while true do
+    -- fix for "Too Long Without Yielding"
+    os.queueEvent("randomEvent")
+    os.pullEvent()
+    --
+    local info = reactor.getReactorInfo()
+    if info.status == "beyond_hope" then
+      redstone.setOutput(redstoneOutputSide, true)
+    end
+    local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
+    local field = (info.fieldStrength * 100) / info.maxFieldStrength
+    -- add "warming_up" ?
+    if info.status ~= "running" and (info.temperature >= alertTemperature or saturation <= 5 or field <= 5) then
+      reactor.stopReactor()
+      sendAlert()
+    end
   end
 end
+
+function peripheralListener()
+  while true do
+    local event, side = os.pullEvent("peripheral")
+    if peripheral.getType(side) == "modem" then
+      rednetSide = side
+    end
+  end
+end
+
+function peripheralDetachListener()
+  while true do
+    local event, side = os.pullEvent("peripheral_detach")
+    if side == rednetSide then
+      rednetSide = nil
+    end
+  end
+end
+
+parallel.waitForAny(peripheralListener, peripheralDetachListener, start)
