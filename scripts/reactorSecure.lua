@@ -1,7 +1,7 @@
 -- Draconic evolution reactor secure program
 local cfun = computerLib
 -- Settings vars
-local alertTemperature = 7950 -- 2000?
+local alertTemperature = 7950
 
 -- Args and vars def
 local redstoneOutputSide = nil
@@ -69,7 +69,7 @@ function start()
       redstone.setOutput(redstoneOutputSide, true)
     end
     local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
-    cfun.printProcess("saturation : " .. saturation .. ", tmp : " .. (info.temperature >= alertTemperature) .. ", and : " .. (info.status ~= "running" and info.status ~= "warming_up"))
+    print(info.status ~= "running" and info.status ~= "warming_up")
     if info.status ~= "running" and info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20) then
       reactor.stopReactor()
       sendAlert()
