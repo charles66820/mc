@@ -1,13 +1,6 @@
-function sideSearch(type)
-  for i, side in ipairs(peripheral.getNames()) do
-    if peripheral.getType(side) == type then
-      return side
-    end
-  end
-  return nil
-end
+local cfun = computerLib
 
-local rednetSide = sideSearch("modem")
+local rednetSide = cfun.sideSearch("modem")
 
 if rednetSide == nil then
   print("Can't connet to rednet!")

@@ -37,8 +37,18 @@ function loadFile(name)
   end
 end
 
+function sideSearch(type)
+  for i, side in ipairs(peripheral.getNames()) do
+    if peripheral.getType(side) == type then
+      return side
+    end
+  end
+  return nil
+end
+
 return {
   hasValue = hasValue,
   printProcess = printProcess,
-  loadFile = loadFile
+  loadFile = loadFile,
+  sideSearch = sideSearch
 }
