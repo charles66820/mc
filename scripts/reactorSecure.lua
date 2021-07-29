@@ -41,6 +41,10 @@ while reactor == nil do
   reactor = peripheral.find("flux_gate")
 end
 while true do
+  -- fix for "Too Long Without Yielding"
+  os.queueEvent("randomEvent")
+  os.pullEvent()
+  --
   local info = reactor.getReactorInfo()
   if info.status == "beyond_hope" then
     redstone.setOutput(redstoneOutputSide, true)
