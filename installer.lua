@@ -2,7 +2,8 @@
 local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
 local libs = {"computerLib.lua"}
 local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua"}
-local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua", "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
+local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua",
+                       "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
 local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua"}
 local workdir = "/bitacu/"
 local libsDirName = "libs/"
@@ -63,12 +64,16 @@ end
 -- Download scripts and libs
 fs.delete(workdir)
 fs.makeDir(workdir)
+loadFiles("", {"configLoader.lua"})
 loadFiles(libsDirName, libs)
 loadFiles(scriptsDirName, scripts)
 
 -- Configs file
 local config = {
-  dropBadItems = true
+  dropBadItems = true,
+  dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
+                  "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"},
+  fuelList = {"minecraft:coal", "minecraft:charcoal"}
 }
 
 local configFile = fs.open("/config", "w")
@@ -81,10 +86,17 @@ startupContent = startupContent .. "local workdir = \"" .. workdir .. "\"\n"
 startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\"\n"
 startupContent = startupContent .. "local scriptsDirName = \"" .. scriptsDirName .. "\"\n"
 startupContent = startupContent .. [[
+-- load libs
 for i, filename in ipairs(libs) do
   os.loadAPI(workdir .. libsDirName .. filename)
 end
+-- load config
+os.loadAPI(workdir .. "configLoader.lua")
+
+-- defind path
 shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
+
+-- autorun
 if fs.exists("/.run") then
   local file = fs.open("/.run", "r")
   shell.run(file.readAll())

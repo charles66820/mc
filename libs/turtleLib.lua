@@ -1,11 +1,3 @@
-local dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
-                      "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"}
-local fuelList = {"minecraft:coal", "minecraft:charcoal"}
-
-local configFile = fs.open("/config", "r")
-local config = textutils.unserialize(configFile.readAll())
-configFile.close()
-
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
@@ -27,7 +19,7 @@ function refuel()
     for n = 1, 16 do
       turtle.select(n)
       local data = turtle.getItemDetail()
-      if data and data.count > 0 and hasValue(fuelList, data.name) then
+      if data and data.count > 0 and hasValue(config.fuelList, data.name) then
         turtle.refuel(1)
         turtle.select(1)
         return true
@@ -127,7 +119,7 @@ function dropAllItems(arr, dir)
 end
 
 function dropBadItems()
-  dropAllItems(dropItemList, "down")
+  dropAllItems(config.dropItemList, "down")
 end
 
 function digAndForward(nb)
