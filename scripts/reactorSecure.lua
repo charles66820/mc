@@ -70,8 +70,7 @@ function start()
     end
     local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
     local field = (info.fieldStrength * 100) / info.maxFieldStrength
-    -- add "warming_up" ?
-    if info.status ~= "running" and (info.temperature >= alertTemperature or saturation <= 5 or field <= 5) then
+    if info.status ~= "running" and info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 5 or field <= 5) then
       reactor.stopReactor()
       sendAlert()
     end
