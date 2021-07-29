@@ -1,21 +1,19 @@
 -- Redstone reciver
 local cfun = computerLib
 -- Args and vars def
-local rednetSide = nil
 local redstoneSide = nil
 local protocol = nil
 local keywordOn = nil
 local keywordOff = nil
 
 local args = {...}
-if #args == 5 then
-  rednetSide = args[1] -- TODO: auto ?
-  redstoneSide = args[2]
-  protocol = args[3]
-  keywordOn = args[4]
-  keywordOff = args[5]
+if #args == 4 then
+  redstoneSide = args[1]
+  protocol = args[2]
+  keywordOn = args[3]
+  keywordOff = args[4]
 else
-  print("Usage: ", args[0], " <rednetSide> <redstoneSide> <protocol> <keywordOn> <keywordOff>")
+  print("Usage: ", args[0], " <redstoneSide> <protocol> <keywordOn> <keywordOff>")
   return 128
 end
 
@@ -26,8 +24,16 @@ end
 
 -- save current run program in .run
 local file = fs.open("/.run", "w")
-file.write("redstoneReceiver " .. rednetSide .. " " .. redstoneSide .. " " .. protocol .. " " ..  keywordOn .. " " .. keywordOff)
+file.write("redstoneReceiver " .. redstoneSide .. " " .. protocol .. " " ..  keywordOn .. " " .. keywordOff)
 file.close()
+
+local rednetSide = cfun.sideSearch("modem")
+
+if rednetSide == nil then
+  print("Can't connet to rednet!")
+  print("Modem not found")
+  return 1
+end
 
 -- main
 rednet.open(rednetSide)
