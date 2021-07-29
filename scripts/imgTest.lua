@@ -17,10 +17,6 @@ while side == nil or not cfun.hasValue(peripheral.getNames(), side) do
   side = read()
 end
 
-if side == "front" then
-  side = ""
-end
-
 -- Main
 if not peripheral.isPresent(side) then
   cfun.printProcess("Screen is not present")
