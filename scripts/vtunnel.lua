@@ -83,4 +83,12 @@ function start()
   clean()
 end
 
-start()
+function inventoryListener()
+  os.pullEvent("turtle_inventory")
+  -- Clean inventory
+  if config.dropBadItems then
+   tfun.dropBadItems()
+  end
+end
+
+parallel.waitForAny(inventoryListener, start)

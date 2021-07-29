@@ -8,9 +8,6 @@ local function hasValue(arr, val)
 end
 
 function refuel()
-  if config.dropBadItems then
-    dropBadItems()
-  end -- Clean inventory before refuel
   local fuelLevel = turtle.getFuelLevel()
   if fuelLevel == "unlimited" or fuelLevel > 0 then
     return
