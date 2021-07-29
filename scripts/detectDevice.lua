@@ -21,6 +21,14 @@ if side == "front" then
 end
 
 -- Main
+local periList = peripheral.getNames()
+
+for i = 1, #periList do
+	print("I have a "..peripheral.getType(periList[i]).." attached as \""..periList[i].."\".")
+end
+
+os.sleep(60)
+
 if not peripheral.isPresent(side) then
   cfun.printProcess("Device is not present")
   return 1
