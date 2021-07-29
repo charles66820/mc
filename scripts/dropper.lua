@@ -29,6 +29,7 @@ while true do
     if turtle.getItemCount(n) > 0 then
       turtle.select(n)
       turtle.drop(nbDrop)
+      break
     end
   end
   os.sleep(time)
