@@ -1,7 +1,9 @@
 -- Draconic evolution reactor secure program
 local cfun = computerLib
 -- Settings vars
-local alertTemperature = 7950
+local alertTemperature = 8000
+local alertSaturation = 5
+local alertField = 20
 
 -- Args and vars def
 local redstoneOutputSide = nil
@@ -42,12 +44,12 @@ if rednetSide ~= nil then
 end
 
 -- functions
-function sendAlert()
+function sendAlert(msg)
   if protocol ~= nil and rednetSide ~= nil then
     if not rednet.isOpen(rednetSide) then
       rednet.open(rednetSide)
     end
-    rednet.broadcast("solarReactorAlert", protocol)
+    rednet.broadcast("solarReactorAlert(".. msg ..")", protocol)
   end
 end
 
@@ -55,6 +57,7 @@ function findReactor()
   local reactor = nil
   while reactor == nil do
     cfun.printProcess("Serching reactor...")
+    redstone.setOutput(redstoneOutputSide, false)
     reactor = peripheral.find("draconic_reactor")
   end
   cfun.printProcess("Reactor found!")
@@ -74,18 +77,23 @@ function start()
       reactor = findReactor()
     end
     local info = reactor.getReactorInfo()
-    if info.status == "beyond_hope" then
-      redstone.setOutput(redstoneOutputSide, true)
-    end
-    local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
-    local field = (info.fieldStrength * 100) / info.maxFieldStrength
-    cfun.printProcessAt("is warming_up : " .. tostring(info.status ~= "warming_up"), 1, 2)
-    cfun.printProcessAt("is tmp alert : " .. tostring(info.temperature >= alertTemperature), 1, 3)
-    cfun.printProcessAt("is saturation : " .. tostring(saturation <= 20), 1, 4)
-    cfun.printProcessAt("is field : " .. tostring(field <= 20), 1, 5)
-    if info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20 or field <= 20) then
-      reactor.stopReactor()
-      sendAlert()
+    if info ~= nil then
+      if info.status == "beyond_hope" then
+        redstone.setOutput(redstoneOutputSide, true)
+        sendAlert("numerized")
+      end
+      local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
+      local field = (info.fieldStrength * 100) / info.maxFieldStrength
+      cfun.printProcessAt("is warming_up : " .. tostring(info.status ~= "warming_up"), 1, 2)
+      cfun.printProcessAt("is tmp alert : " .. tostring(info.temperature >= alertTemperature), 1, 3)
+      cfun.printProcessAt("is saturation : " .. tostring(saturation <= 20), 1, 4)
+      cfun.printProcessAt("is field : " .. tostring(field <= 20), 1, 5)
+      if info.status ~= "warming_up" and info.status ~= "offline" and (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField) then
+        if reactor ~= nil then
+          reactor.stopReactor()
+        end
+        sendAlert("stop")
+      end
     end
   end
 end
