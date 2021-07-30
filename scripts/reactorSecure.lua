@@ -41,6 +41,7 @@ if rednetSide ~= nil then
   rednet.open(rednetSide)
 end
 
+-- functions
 function sendAlert()
   if protocol ~= nil and rednetSide ~= nil then
     if not rednet.isOpen(rednetSide) then
@@ -50,13 +51,18 @@ function sendAlert()
   end
 end
 
+function findReactor()
+  local reactor = nil
+  while reactor == nil do
+    cfun.printProcess("Serching reactor...")
+    reactor = peripheral.find("draconic_reactor")
+  end
+  cfun.printProcess("Reactor found!")
+  return reactor
+end
+
 -- Security check
 local reactor = nil
-while reactor == nil do
-  cfun.printProcess("Serching reactor...")
-  reactor = peripheral.find("draconic_reactor")
-end
-cfun.printProcess("Reactor found!")
 
 function start()
   while true do
@@ -64,6 +70,9 @@ function start()
     os.queueEvent("randomEvent")
     os.pullEvent()
     --
+    if reactor == nil then
+      reactor = findReactor()
+    end
     local info = reactor.getReactorInfo()
     if info.status == "beyond_hope" then
       redstone.setOutput(redstoneOutputSide, true)
