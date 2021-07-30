@@ -10,11 +10,11 @@ function hasValue(arr, val)
   return false
 end
 
-function printProcess(msg)
+function printProcessAt(msg, x, y)
   local x, y = term.getCursorPos()
   local saveColor = term.getTextColor()
   local saveBgColor = term.getBackgroundColor()
-  term.setCursorPos(1, 1)
+  term.setCursorPos(x, y)
   term.clearLine()
   term.setTextColor(colors.black)
   term.setBackgroundColor(colors.white)
@@ -22,6 +22,10 @@ function printProcess(msg)
   term.setCursorPos(x, y)
   term.setTextColor(saveColor)
   term.setBackgroundColor(saveBgColor)
+end
+
+function printProcess(msg)
+  printProcessAt(msg, 1, 1)
 end
 
 function loadFile(name)
@@ -48,6 +52,7 @@ end
 
 return {
   hasValue = hasValue,
+  printProcessAt = printProcessAt,
   printProcess = printProcess,
   loadFile = loadFile,
   sideSearch = sideSearch
