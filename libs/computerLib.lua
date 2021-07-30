@@ -11,7 +11,7 @@ function hasValue(arr, val)
 end
 
 function printProcessAt(msg, x, y)
-  local x, y = term.getCursorPos()
+  local saveX, saveY = term.getCursorPos()
   local saveColor = term.getTextColor()
   local saveBgColor = term.getBackgroundColor()
   term.setCursorPos(x, y)
@@ -19,7 +19,7 @@ function printProcessAt(msg, x, y)
   term.setTextColor(colors.black)
   term.setBackgroundColor(colors.white)
   term.write(msg)
-  term.setCursorPos(x, y)
+  term.setCursorPos(saveX, saveY)
   term.setTextColor(saveColor)
   term.setBackgroundColor(saveBgColor)
 end
