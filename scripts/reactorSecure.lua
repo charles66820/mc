@@ -70,7 +70,10 @@ function start()
     end
     local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
     local field = (info.fieldStrength * 100) / info.maxFieldStrength
-    print(info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20 or field <= 20))
+    print("is warming_up : ", info.status ~= "warming_up")
+    print("is tmp alert : ", info.temperature >= alertTemperature)
+    print("is saturation : ", saturation <= 20)
+    print("is field : ", field <= 20)
     if info.status ~= "warming_up" and (info.temperature >= alertTemperature or saturation <= 20 or field <= 20) then
       reactor.stopReactor()
       sendAlert()
