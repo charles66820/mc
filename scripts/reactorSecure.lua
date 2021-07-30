@@ -56,8 +56,11 @@ end
 function findReactor()
   local reactor = nil
   while reactor == nil do
+    -- fix for "Too Long Without Yielding"
+    os.queueEvent("randomEvent")
+    os.pullEvent()
+    --
     cfun.printProcess("Serching reactor...")
-    redstone.setOutput(redstoneOutputSide, false)
     reactor = peripheral.find("draconic_reactor")
   end
   cfun.printProcess("Reactor found!")
@@ -81,6 +84,8 @@ function start()
       if info.status == "beyond_hope" then
         redstone.setOutput(redstoneOutputSide, true)
         sendAlert("numerized")
+      else
+        redstone.setOutput(redstoneOutputSide, false)
       end
       local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
       local field = (info.fieldStrength * 100) / info.maxFieldStrength
