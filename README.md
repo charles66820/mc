@@ -34,10 +34,26 @@ installer computer
 installer redstoneReceiver
 ```
 
+## update libs and scripts
+
+```bash
+installer update
+```
+
+## update installer
+
+```bash
+rm installer.lua
+wget https://raw.githubusercontent.com/charles66820/mc/main/installer.lua
+installer update
+```
+
 ## Tests
 
---local success, msg = turtle.forward()
+```lua
+-- local success, msg = turtle.forward()
 -- print("Forward output: ", success)
 -- print("Forward output msg nil: ", msg == nil)
 -- print("Forward output msg fuel: ", msg == "Out of fuel")
 -- print("Forward output msg move: ", msg == "Movement obstructed")
+```
