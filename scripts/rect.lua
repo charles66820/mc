@@ -179,4 +179,8 @@ function inventoryListener()
   end
 end
 
+for i, v in ipairs(conf) do
+  print("v : " .. v)
+end
+
 parallel.waitForAny(inventoryListener, start)
