@@ -18,7 +18,7 @@ function refuel()
     for n = 1, 16 do
       turtle.select(n)
       local data = turtle.getItemDetail()
-      if data and data.count > 0 and hasValue(conf.fuelList, data.name) then
+      if data and data.count > 0 and hasValue(config.fuelList, data.name) then
         turtle.refuel(1)
         turtle.select(1)
         return true
