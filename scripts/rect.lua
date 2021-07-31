@@ -180,8 +180,9 @@ end
 -- parallel.waitForAny(inventoryListener, start)
 
 -- try to debug config
-print(config)
-for i, v in ipairs(config) do
+local conf = config.getConfig()
+print(conf)
+for i, v in ipairs(conf) do
   print("v : " .. v)
 end
-print(config.fuelList)
+print(conf.fuelList)
