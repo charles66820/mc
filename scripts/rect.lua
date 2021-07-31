@@ -169,12 +169,14 @@ end
 
 function inventoryListener()
   while true do
+    print("toto1")
     os.pullEvent("turtle_inventory")
+    print("toto2")
     -- Clean inventory
     if config.dropBadItems then
-    tfun.dropBadItems()
+      tfun.dropBadItems()
     end
   end
 end
-print("toto")
+
 parallel.waitForAny(inventoryListener, start)
