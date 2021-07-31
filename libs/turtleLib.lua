@@ -1,5 +1,3 @@
-local conf = config
-
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
@@ -18,11 +16,6 @@ function refuel()
     for n = 1, 16 do
       turtle.select(n)
       local data = turtle.getItemDetail()
-      print(conf)
-      for i, v in ipairs(conf) do
-        print("v : " .. v)
-      end
-      print(conf.fuelList) -- BUG: HERE TODO:
       if data and data.count > 0 and hasValue(conf.fuelList, data.name) then
         turtle.refuel(1)
         turtle.select(1)

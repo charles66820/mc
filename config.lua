@@ -5,4 +5,6 @@ configFile.close()
 
 settings.set("list.show_hidden", true)
 
-return config
+return {
+  config = config
+}

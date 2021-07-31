@@ -54,9 +54,7 @@ end
 -- functions
 function init()
   if centerStart then
-    print("totoA")
     tfun.digAndForward(1)
-    print("totoB")
     tfun.digUpAndUp(1)
     turtle.turnLeft()
     tfun.digAndForward(math.floor(length / 2))
@@ -179,8 +177,15 @@ function inventoryListener()
   end
 end
 
-for i, v in ipairs(conf) do
+-- parallel.waitForAny(inventoryListener, start)
+
+-- try to debug config
+print(config)
+for i, v in ipairs(config) do
   print("v : " .. v)
 end
-
-parallel.waitForAny(inventoryListener, start)
+print(config.config)
+print(config.config.fuelList)
+for i, v in ipairs(config.config) do
+  print("v : " .. v)
+end
