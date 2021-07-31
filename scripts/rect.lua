@@ -1,6 +1,7 @@
 -- Dig a rectangle
 local cfun = computerLib
 local tfun = turtleLib
+local config = configLoader.getConfig()
 -- Args and vars def
 local width = 0
 local length = 0
@@ -177,12 +178,4 @@ function inventoryListener()
   end
 end
 
--- parallel.waitForAny(inventoryListener, start)
-
--- try to debug config
-local conf = config.getConfig()
-print(conf)
-for i, v in ipairs(conf) do
-  print("v : " .. v)
-end
-print(conf.fuelList)
+parallel.waitForAny(inventoryListener, start)

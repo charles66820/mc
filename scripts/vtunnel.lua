@@ -1,6 +1,7 @@
 -- Mine a circle vertical tunnel
 local cfun = computerLib
 local tfun = turtleLib
+local config = configLoader.getConfig()
 -- Args and vars def
 local deeper = 0
 local invert = false

@@ -1,6 +1,7 @@
 -- Mine a circle tunnel
 local cfun = computerLib
 local tfun = turtleLib
+local config = configLoader.getConfig()
 -- Args and vars def
 local width = 0
 local args = {...}

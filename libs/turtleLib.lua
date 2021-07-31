@@ -1,3 +1,5 @@
+local config = configLoader.getConfig()
+
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
