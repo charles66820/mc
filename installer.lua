@@ -86,12 +86,13 @@ startupContent = startupContent .. "local workdir = \"" .. workdir .. "\"\n"
 startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\"\n"
 startupContent = startupContent .. "local scriptsDirName = \"" .. scriptsDirName .. "\"\n"
 startupContent = startupContent .. [[
+-- load config
+os.loadAPI(workdir .. "configLoader.lua")
+
 -- load libs
 for i, filename in ipairs(libs) do
   os.loadAPI(workdir .. libsDirName .. filename)
 end
--- load config
-os.loadAPI(workdir .. "configLoader.lua")
 
 -- defind path
 shell.setPath(shell.path() .. ":" .. workdir .. scriptsDirName)
