@@ -1,3 +1,7 @@
+if config == nil then
+  config = require("configLoader")
+end
+
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
