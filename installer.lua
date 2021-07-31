@@ -90,7 +90,7 @@ installTypeFile.close()
 -- Download scripts and libs
 fs.delete(workdir)
 fs.makeDir(workdir)
-loadFiles("", {"configLoader.lua"})
+loadFiles("", {"config.lua"})
 loadFiles(libsDirName, libs)
 loadFiles(scriptsDirName, scripts)
 
@@ -113,7 +113,7 @@ startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\
 startupContent = startupContent .. "local scriptsDirName = \"" .. scriptsDirName .. "\"\n"
 startupContent = startupContent .. [[
 -- load config
-os.loadAPI(workdir .. "configLoader.lua")
+os.loadAPI(workdir .. "config.lua")
 
 -- load libs
 for i, filename in ipairs(libs) do
