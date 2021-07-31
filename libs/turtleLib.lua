@@ -1,5 +1,5 @@
 if config == nil then
-  config = require("configLoader")
+  config = require("../configLoader")
 end
 
 local function hasValue(arr, val)
