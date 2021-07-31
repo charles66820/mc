@@ -8,15 +8,23 @@ local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reac
 local workdir = "/bitacu/"
 local libsDirName = "libs/"
 local scriptsDirName = "scripts/"
-local deviceType = ""
+local installType = ""
+local autorun = true
 
 -- Args
 local args = {...}
 
 if #args == 1 then
-  deviceType = args[1]
+  installType = args[1]
+elseif #args == 2 then
+  installType = args[1]
+  if args[2] == "true" then
+    autorun = true
+  else
+    autorun = false
+  end
 else
-  print("Usage: ", args[0], " <deviceType>")
+  print("Usage: ", args[0], " <installType> <autorun>")
   return 128
 end
 
@@ -37,17 +45,31 @@ function loadFiles(prefix, files)
 end
 
 -- Main
-if deviceType == "turtle" then
+
+-- if update
+if installType == "update" then
+  if fs.exists("/.installType") then
+    local installTypeFile = fs.open("/.installType", "r")
+    installType = installTypeFile.readAll()
+    installTypeFile.close()
+  else
+    print("Error \".installType\" not found")
+    return 1
+  end
+end
+
+-- init installer
+if installType == "turtle" then
   table.insert(libs, "turtleLib.lua")
   for i, v in ipairs(turtleScripts) do
     table.insert(scripts, v)
   end
-elseif deviceType == "computer" then
+elseif installType == "computer" then
   table.insert(libs, "screenLib.lua")
   for i, v in ipairs(computerScripts) do
     table.insert(scripts, v)
   end
-elseif deviceType == "redstoneReceiver" then
+elseif installType == "redstoneReceiver" then
   table.insert(scripts, "redstoneReceiver.lua")
 else -- all
   table.insert(libs, "turtleLib.lua")
@@ -60,6 +82,10 @@ else -- all
   end
   table.insert(scripts, "redstoneReceiver.lua")
 end
+
+local installTypeFile = fs.open("/.installType", "w")
+installTypeFile.write(installType)
+installTypeFile.close()
 
 -- Download scripts and libs
 fs.delete(workdir)
@@ -109,4 +135,6 @@ local startup = fs.open("startup", "w")
 startup.write(startupContent)
 startup.close()
 
-shell.run("startup")
+if autorun then
+  shell.run("startup")
+end
