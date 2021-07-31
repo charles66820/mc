@@ -54,7 +54,9 @@ end
 -- functions
 function init()
   if centerStart then
+    print("totoA")
     tfun.digAndForward(1)
+    print("totoB")
     tfun.digUpAndUp(1)
     turtle.turnLeft()
     tfun.digAndForward(math.floor(length / 2))
@@ -169,9 +171,7 @@ end
 
 function inventoryListener()
   while true do
-    print("toto1")
     os.pullEvent("turtle_inventory")
-    print("toto2")
     -- Clean inventory
     if config.dropBadItems then
       tfun.dropBadItems()
