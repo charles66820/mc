@@ -176,5 +176,5 @@ function inventoryListener()
     end
   end
 end
-
+print("toto")
 parallel.waitForAny(inventoryListener, start)
