@@ -1,4 +1,3 @@
-print("toto1")
 local function hasValue(arr, val)
   for i, v in ipairs(arr) do
     if v == val then
@@ -9,20 +8,19 @@ local function hasValue(arr, val)
 end
 
 function refuel()
-  print("toto3")
   local fuelLevel = turtle.getFuelLevel()
   if fuelLevel == "unlimited" or fuelLevel > 0 then
     return
   end
-  print("toto4")
   local function tryRefuel()
-    print("toto5")
     for n = 1, 16 do
       turtle.select(n)
       local data = turtle.getItemDetail()
-      print("toto6")
       print(config)
-      print(config.fuelList)
+      for i, v in ipairs(config) do
+        print("v : " .. v)
+      end
+      print(config.fuelList) -- BUG: HERE TODO:
       if data and data.count > 0 and hasValue(config.fuelList, data.name) then
         turtle.refuel(1)
         turtle.select(1)
@@ -127,7 +125,6 @@ function dropBadItems()
 end
 
 function digAndForward(nb)
-  print("toto2")
   while nb > 0 do
     refuel()
     while turtle.detect() do
