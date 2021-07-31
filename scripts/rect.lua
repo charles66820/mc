@@ -184,8 +184,4 @@ print(config)
 for i, v in ipairs(config) do
   print("v : " .. v)
 end
-print(config.config)
-print(config.config.fuelList)
-for i, v in ipairs(config.config) do
-  print("v : " .. v)
-end
+print(config.fuelList)
