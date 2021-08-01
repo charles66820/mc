@@ -50,15 +50,17 @@ end
 -- functions
 function digCeil()
   cfun.printProcess("Digging ceil...")
+  tfun.digAndForward(1)
   if height >= 3 then
-    tfun.digUpAndUp(height - 2)
+    tfun.digUpAndUp(height)
   end
-  if height % 2 == 0 then
-    tfun.turnAround()
-  end
-  tfun.digAndForward(2)
-  tfun.digUpAndUp(1)
+  -- if height % 2 == 0 then
+  --   tfun.turnAround()
+  -- end
   turtle.turnLeft()
+  tfun.digAndForward(3)
+  turtle.turnRight()
+
   tfun.digAndForward(width - 1)
   tfun.turnDigAndForwardRight()
   tfun.digAndForward(width - 1)
