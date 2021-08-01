@@ -2,16 +2,10 @@
 
 ## Install
 
-Download the installer
-
-```bash
-wget https://raw.githubusercontent.com/charles66820/mc/main/installer.lua
-```
-
 Install all scripts and libs
 
 ```bash
-installer all
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua all
 ```
 
 or customized your install
@@ -19,33 +13,31 @@ or customized your install
 > for turtle
 
 ```bash
-installer turtle
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua turtle
 ```
 
 > for computer
 
 ```bash
-installer computer
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua computer
 ```
 
 > for redstone receiver
 
 ```bash
-installer redstoneReceiver
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua redstoneReceiver
 ```
 
 ## update libs and scripts
 
 ```bash
-installer update
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua update
 ```
 
-## update installer
+> without startup run
 
 ```bash
-rm installer.lua
-wget https://raw.githubusercontent.com/charles66820/mc/main/installer.lua
-installer update
+wget run https://raw.githubusercontent.com/charles66820/mc/main/installer.lua update false
 ```
 
 ## Tests
