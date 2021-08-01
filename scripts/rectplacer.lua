@@ -80,8 +80,13 @@ function layers(h)
     end
     local lwidth = 0
     repeat
-      if lwidth ~= 0 then
-        if i % 2 == 1 then
+      if lwidth ~= 0 then -- if is first line start
+        local pivo = 0 -- if width is odd
+        -- if width is peer and is back layer or is peer last layer
+        if width % 2 == 0 and (i % 2 == 0 or (nbThreeLayer % 2 == 1 and h ~= 3)) then
+          pivo = 1
+        end
+        if lwidth % 2 == pivo then
           tfun.turnDigAndForwardRight()
         else
           tfun.turnDigAndForwardLeft()
@@ -100,26 +105,36 @@ function mainLoop()
 end
 
 function clean()
+  -- escape the placed rectangle
+  tfun.digUpAndUp(1)
   -- When is not back at start
   if height % 2 ~= 0 then
     if width % 2 == 0 then -- When is at left
       turtle.turnLeft()
-      tfun.digAndForward(width - 1)
+      tfun.digAndForward(width)
       turtle.turnLeft()
     else -- When is at right
       turtle.turnRight()
-      tfun.digAndForward(width - 1)
+      tfun.digAndForward(width)
       turtle.turnRight()
       tfun.digAndForward(length - 1)
       tfun.turnAround()
     end
   else
-    tfun.turnAround()
+    turtle.turnLeft()
+    tfun.digAndForward(1)
+    turtle.turnLeft()
   end
-  if height > 0 then
+  if restLayer == 1 or restLayer == 2 then
+    tfun.digDownAndDown(height)
+  else
     tfun.digDownAndDown(height - 1)
   end
-  -- TODO: reset center ?
+  -- reset center
+  if centerStart then
+    tfun.digAndForward(math.floor(length / 2))
+  end
+  turtle.turnLeft()
 end
 
 function start()
