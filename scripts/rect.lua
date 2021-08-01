@@ -158,6 +158,8 @@ function clean()
     turtle.turnRight()
     tfun.digAndForward(1)
     tfun.turnAround()
+  else
+    turtle.turnLeft()
   end
 end
 
