@@ -108,7 +108,7 @@ end
 
 function mainLoop()
   shell.run("rect", width, length, height, "true")
-  if haveCeil then
+  if haveCeil and length == 11 then
     digCeil()
   end
 end
