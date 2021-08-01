@@ -101,7 +101,7 @@ function layers(n, h)
     end
     local lwidth = 0
     repeat
-      if lwidth ~= 0 then
+      if lwidth ~= 0 then -- if is first line start
         local pivo = 0
         if width % 2 == 0 then
           if h < 3 then
@@ -154,10 +154,8 @@ function clean()
   else
     tfun.turnAround()
   end
-  if restLayer == 1 then
-    tfun.digDownAndDown(height)
-  elseif restLayer == 2 then
-    tfun.digDownAndDown(height + 1)
+  if restLayer == 1 or restLayer == 2 then
+    tfun.digDownAndDown(height - 1)
   else
     tfun.digDownAndDown(height - 2)
   end
