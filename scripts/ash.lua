@@ -2,6 +2,7 @@
 local cfun = computerLib
 local tfun = turtleLib
 -- Args and vars def
+local waitTime = 22 -- in minute
 local args = {...}
 
 -- functions
@@ -165,9 +166,9 @@ function mainLoop()
   refill()
   while true do
     place()
-    cfun.printProcess("Attente 0 / 21 minute")
-    for i = 1, 21 do
-      cfun.printProcess("Attente " .. i .. " / 21 minute")
+    cfun.printProcess("Attente 0 / " .. waitTime .." minute")
+    for i = 1, waitTime do
+      cfun.printProcess("Attente " .. i .. " / " .. waitTime .." minute")
       os.sleep(60)
     end
     collect()

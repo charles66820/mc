@@ -15,8 +15,6 @@ else
   return 128
 end
 
-
-
 -- save current run program in .run
 local file = fs.open("/.run", "w")
 file.write(cmd)
