@@ -156,6 +156,7 @@ function clean()
   if centerStart then
     tfun.digAndForward(math.floor(length / 2))
     turtle.turnRight()
+    tfun.digAndForward()
     tfun.turnAround()
   end
 end
