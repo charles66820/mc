@@ -119,8 +119,10 @@ function clean()
     tfun.digAndForward(width - 1)
     turtle.turnRight()
     tfun.digAndForward(3) -- NOTE: make relative ?
-    turtle.turnRight()
-    tfun.digDownAndDown(height - 2)
+    tfun.digDownAndDown(height)
+    turtle.turnLeft()
+    tfun.digAndForward(1)
+    tfun.turnAround()
   end
 end
 
