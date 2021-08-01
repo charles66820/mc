@@ -56,7 +56,9 @@ end
 function init()
   if centerStart then
     tfun.digAndForward(1)
-    tfun.digUpAndUp(1)
+    if height > 1 then
+      tfun.digUpAndUp(1)
+    end
     turtle.turnLeft()
     tfun.digAndForward(math.floor(length / 2))
     tfun.turnAround()
@@ -152,14 +154,16 @@ function clean()
   else
     tfun.turnAround()
   end
-  if restLayer == 1 and nbThreeLayer > 0 then
-    tfun.digDownAndDown(height - 2)
-  elseif restLayer ~= 0 then
-    tfun.digDownAndDown(height - restLayer)
+  if restLayer == 1 then
+    tfun.digDownAndDown(height)
+  elseif restLayer == 2 then
+    tfun.digDownAndDown(height + 1)
   else
-    tfun.digDownAndDown(height - 3)
+    tfun.digDownAndDown(height - 2)
   end
   -- TODO: reset center ?
+  if centerStart then
+  end
 end
 
 function start()
