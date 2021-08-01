@@ -96,7 +96,7 @@ loadFiles(scriptsDirName, scripts)
 
 -- Configs file
 local config = {
-  dropBadItems = true,
+  dropBadItems = false,
   dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
                   "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"},
   fuelList = {"minecraft:coal", "minecraft:charcoal"}
