@@ -9,7 +9,7 @@ local args = {...}
 if #args == 1 then
   width = tonumber(args[1])
 elseif #args > 1 then
-  print("Usage: ", args[0], " <longeur>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <longeur>")
   return 128
 end
 

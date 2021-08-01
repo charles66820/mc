@@ -17,7 +17,7 @@ elseif #args == 2 then
   redstoneOutputSide = args[1]
   protocol = args[2]
 else
-  print("Usage: ", args[0], " <redstoneOutputSide> <protocol>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <redstoneOutputSide> <protocol>")
   return 128
 end
 

@@ -8,7 +8,7 @@ local args = {...}
 if #args == 1 then
   side = args[1]
 elseif #args > 1 then
-  print("Usage: ", args[0], " <side>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <side>")
   return 128
 end
 

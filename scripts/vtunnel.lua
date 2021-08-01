@@ -17,7 +17,7 @@ elseif #args == 2 then
     invert = false
   end
 elseif #args > 2 then
-  print("Usage: ", args[0], " <deeper> <invert>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <deeper> <invert>")
   return 128
 end
 

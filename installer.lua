@@ -24,7 +24,7 @@ elseif #args == 2 then
     autorun = false
   end
 else
-  print("Usage: ", args[0], " <installType> <autorun>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <installType> <autorun>")
   return 128
 end
 

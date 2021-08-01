@@ -26,7 +26,7 @@ elseif #args == 4 then
     centerStart = true
   end
 elseif #args > 4 then
-  print("Usage: ", args[0], " <width> <length> <height> <centerStart>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <width> <length> <height> <centerStart>")
   return 128
 end
 

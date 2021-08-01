@@ -5,7 +5,7 @@ local name = nil
 if #args == 1 then
   name = args[1]
 elseif #args > 1 then
-  print("Usage: ", args[0], " <name>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <name>")
   return 128
 end
 

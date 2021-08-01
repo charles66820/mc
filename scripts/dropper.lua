@@ -10,7 +10,7 @@ elseif #args == 2 then
   time = tonumber(args[1])
   nbDrop = tonumber(args[2])
 elseif #args > 2 then
-  print("Usage: ", args[0], " <time> <nbDrop>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <time> <nbDrop>")
   return 128
 end
 

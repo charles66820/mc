@@ -28,7 +28,7 @@ elseif #args == 4 then
     haveCeil = false
   end
 elseif #args > 4 then
-  print("Usage: ", args[0], " <width> <length> <height> <haveCeil>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <width> <length> <height> <haveCeil>")
   return 128
 end
 

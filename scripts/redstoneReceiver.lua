@@ -13,7 +13,7 @@ if #args == 4 then
   keywordOn = args[3]
   keywordOff = args[4]
 else
-  print("Usage: ", args[0], " <redstoneSide> <protocol> <keywordOn> <keywordOff>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <redstoneSide> <protocol> <keywordOn> <keywordOff>")
   return 128
 end
 

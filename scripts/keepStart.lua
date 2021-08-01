@@ -11,7 +11,7 @@ if #args >= 1 then
     end
   end
 else
-  print("Usage: ", args[0], " <cmd> [<arg1> <arg2> ...]")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <cmd> [<arg1> <arg2> ...]")
   return 128
 end
 
