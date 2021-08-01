@@ -5,7 +5,7 @@ local args = {...}
 
 -- functions
 function start()
-  while true do
+  cfun.registredLoop(function()
     turtle.turnRight()
     tfun.suckItem("front", "ic2:scaffold", 1)
     turtle.turnRight()
@@ -20,7 +20,7 @@ function start()
     turtle.dig()
     turtle.turnRight()
     turtle.dig()
-  end
+  end)
 end
 
 start()

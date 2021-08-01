@@ -164,16 +164,16 @@ end
 function mainLoop()
   collect()
   refill()
-  while true do
+  cfun.registredLoop(function()
     place()
-    cfun.printProcess("Attente 0 / " .. waitTime .." minute")
+    cfun.printProcess("Attente 0 / " .. waitTime .. " minute")
     for i = 1, waitTime do
-      cfun.printProcess("Attente " .. i .. " / " .. waitTime .." minute")
+      cfun.printProcess("Attente " .. i .. " / " .. waitTime .. " minute")
       os.sleep(60)
     end
     collect()
     refill()
-  end
+  end)
 end
 
 function start()

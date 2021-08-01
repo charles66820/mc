@@ -50,10 +50,17 @@ function sideSearch(type)
   return nil
 end
 
+function registredLoop(cb)
+  -- todo: registred process
+  -- todo: pause process
+  cb()
+end
+
 return {
   hasValue = hasValue,
   printProcessAt = printProcessAt,
   printProcess = printProcess,
   loadFile = loadFile,
-  sideSearch = sideSearch
+  sideSearch = sideSearch,
+  registredLoop = registredLoop
 }

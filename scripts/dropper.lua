@@ -24,7 +24,7 @@ if nbDrop <= 0 then
   nbDrop = tonumber(read())
 end
 
-while true do
+cfun.registredLoop(function()
   for n = 1, 16 do
     if turtle.getItemCount(n) > 0 then
       turtle.select(n)
@@ -33,4 +33,4 @@ while true do
     end
   end
   os.sleep(time)
-end
+end)
