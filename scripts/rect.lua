@@ -159,8 +159,11 @@ function clean()
   else
     tfun.digDownAndDown(height - 2)
   end
-  -- TODO: reset center ?
+  -- reset center
   if centerStart then
+    tfun.digAndForward(math.floor(length / 2))
+    turtle.turnRight()
+    tfun.turnAround()
   end
 end
 
