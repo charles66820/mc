@@ -102,17 +102,10 @@ function layers(n, h)
     local lwidth = 0
     repeat
       if lwidth ~= 0 then -- if is first line start
-        local pivo = 0
-        if width % 2 == 0 then
-          if h < 3 then
-            if nbThreeLayer == 0 then
-              pivo = 0
-            else
-              pivo = 1
-            end
-          else
-            pivo = (i + 1) % 2
-          end
+        local pivo = 0 -- if width is odd
+        -- if width is peer and is back layer or is peer last layer
+        if width % 2 == 0 and (i % 2 == 0 or (nbThreeLayer % 2 == 1 and h ~= 3)) then
+          pivo = 1
         end
         if lwidth % 2 == pivo then
           tfun.turnDigAndForwardRight()
