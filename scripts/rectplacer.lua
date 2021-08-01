@@ -105,8 +105,6 @@ function mainLoop()
 end
 
 function clean()
-  -- escape the placed rectangle
-  tfun.digUpAndUp(1)
   -- When is not back at start
   if height % 2 ~= 0 then
     if width % 2 == 0 then -- When is at left
@@ -126,9 +124,9 @@ function clean()
     turtle.turnLeft()
   end
   if restLayer == 1 or restLayer == 2 then
-    tfun.digDownAndDown(height)
+    tfun.digDownAndDown(height - 2)
   else
-    tfun.digDownAndDown(height - 1)
+    tfun.digDownAndDown(height - 3)
   end
   -- reset center
   if centerStart then
