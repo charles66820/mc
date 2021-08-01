@@ -87,6 +87,12 @@ local installTypeFile = fs.open("/.installType", "w")
 installTypeFile.write(installType)
 installTypeFile.close()
 
+-- Check computer name
+if os.getComputerLabel() == nil then
+  print("Give me a name please :")
+  os.setComputerLabel(read())
+end
+
 -- Download scripts and libs
 fs.delete(workdir)
 fs.makeDir(workdir)
