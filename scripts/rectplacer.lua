@@ -124,9 +124,9 @@ function clean()
     turtle.turnLeft()
   end
   if restLayer == 1 or restLayer == 2 then
-    tfun.digDownAndDown(height - 2)
+    tfun.digDownAndDown(height)
   else
-    tfun.digDownAndDown(height - 3)
+    tfun.digDownAndDown(height - 1)
   end
   -- reset center
   if centerStart then
