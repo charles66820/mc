@@ -82,8 +82,8 @@ function layers(h)
     repeat
       if lwidth ~= 0 then -- if is first line start
         local pivo = 0 -- if width is odd
-        -- if width is peer and is back layer or is peer last layer
-        if width % 2 == 0 and (i % 2 == 0 or (nbThreeLayer % 2 == 1 and h ~= 3)) then
+        -- if width is peer and is back layer
+        if width % 2 == 0 and i % 2 == 0 then
           pivo = 1
         end
         if lwidth % 2 == pivo then
