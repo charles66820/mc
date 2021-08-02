@@ -27,11 +27,13 @@ end
 --screen.setTextScale(0.5)
 local sWidth, sHeight = term.getSize()
 
+local saveX, saveY = term.getCursorPos()
 local saveColor = screen.getTextColor()
 screen.setCursorPos(sWidth - 8, sHeight - 1)
 screen.setTextColor(colors.white)
 screen.write("(" .. sWidth .. ", " .. sHeight .. ")")
 screen.setTextColor(saveColor)
+term.setCursorPos(saveX, saveY)
 
 -- draw img
 term.redirect(screen)
