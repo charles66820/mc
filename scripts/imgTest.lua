@@ -31,9 +31,22 @@ local sWidth, sHeight = term.getSize()
 
 local saveX, saveY = term.getCursorPos()
 local saveColor = screen.getTextColor()
-screen.setCursorPos(sWidth - 8, sHeight - 1)
+
 screen.setTextColor(colors.white)
-screen.write("(" .. sWidth .. ", " .. sHeight .. ")")
+local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
+screen.setCursorPos(math.floor(sWidth / 2) - math.floor(#txt / 2), math.floor(sHeight / 2))
+screen.write(txt)
+
+for i = 1, sWidth, 5 do
+  screen.setCursorPos(i, 1)
+  screen.write(i)
+end
+
+for i = 1, sHeight, 5 do
+  screen.setCursorPos(1, i)
+  screen.write(i)
+end
+
 screen.setTextColor(saveColor)
 term.setCursorPos(saveX, saveY)
 
@@ -42,7 +55,10 @@ term.redirect(screen)
 
 screen.setTextScale(0.5)
 
-local image = paintutils.loadImage(iconName)
-paintutils.drawImage(image, 1, 1)
-
+if iconName ~= nil and iconName ~= "" and fs.exist(iconName) then
+  local image = paintutils.loadImage(iconName)
+  if image ~= nil then
+    paintutils.drawImage(image, 1, 1)
+  end
+end
 -- sfun.loadIcon("logo", 0, 0)
