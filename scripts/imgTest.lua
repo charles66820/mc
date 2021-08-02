@@ -46,18 +46,18 @@ for y = 1, sHeight, 1 do
 end
 term.redirect(saveTerm)
 
-for i = 1, sWidth, 5 do
-  screen.setCursorPos(i, 1)
-  screen.write(math.floor(i + 0.5))
-end
+-- for i = 1, sWidth, 5 do
+--   screen.setCursorPos(i, 1)
+--   screen.write(math.floor(i + 0.5))
+-- end
 
-for i = 1, sHeight, 5 do
-  screen.setCursorPos(1, i)
-  screen.write(math.floor(i + 0.5))
-end
+-- for i = 1, sHeight, 5 do
+--   screen.setCursorPos(1, i)
+--   screen.write(math.floor(i + 0.5))
+-- end
 
 local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
-screen.setCursorPos(math.floor(sWidth / 2) - math.floor(#txt / 2), math.floor(sHeight / 2))
+screen.setCursorPos(sWidth - #txt, sHeight)
 screen.write(txt)
 
 screen.setTextColor(saveColor)
