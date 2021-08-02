@@ -2,29 +2,34 @@
 local cfun = computerLib
 local sfun = screenLib
 -- Args and vars def
-local side = nil
+local iconName = nil
 local args = {...}
 
 if #args == 1 then
-  side = args[1]
+  iconName = args[1]
 elseif #args > 1 then
-  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <side>")
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <iconName>")
   return 128
 end
 
-while side == nil or not cfun.hasValue(peripheral.getNames(), side) do
-  print("Side :")
-  side = read()
+while iconName == nil do
+  print("file icon name :")
+  iconName = read()
 end
 
 -- Main
-if not peripheral.isPresent(side) then
+local screen = peripheral.find("monitor")
+if not screen then
   cfun.printProcess("Screen is not present")
   return 1
 end
 
-local screen = peripheral.wrap(side)
-
 term.redirect(screen)
-sfun.loadIcon("logo", 0, 0)
+
+term.setTextScale(0.5)
+
+local image = paintutils.loadImage(iconName)
+paintutils.drawImage(image, 1, 1)
+
+-- sfun.loadIcon("logo", 0, 0)
 term.restore()
