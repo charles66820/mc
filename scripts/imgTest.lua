@@ -39,8 +39,9 @@ screen.write(txt)
 
 for y = 1, sHeight, 1 do
   for x = 1, sWidth, 1 do
-    if y % 2 == 0 and x % 2 == 0 then
-      paintutils.drawPixel(j, y, colors.gray)
+    if (y % 2 == 0 and x % 2 == 1)
+    or (y % 2 == 1 and x % 2 == 0) then
+      paintutils.drawPixel(x, y, colors.gray)
     end
   end
 end
