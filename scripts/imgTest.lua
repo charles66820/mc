@@ -40,7 +40,7 @@ screen.write(txt)
 for y = 1, sHeight, 1 do
   for x = 1, sWidth, 1 do
     if y % 2 == 0 and x % 2 == 0 then
-      paintutils.drawImage(j, y, colors.gray)
+      paintutils.drawPixel(j, y, colors.gray)
     end
   end
 end
