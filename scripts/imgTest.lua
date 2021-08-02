@@ -24,22 +24,18 @@ if not screen then
   return 1
 end
 
-term.clear()
 screen.clear()
-term.redirect(screen)
 screen.setTextScale(1)
 
 --screen.setTextScale(0.5)
-local sWidth, sHeight = term.getSize()
+local sWidth, sHeight = screen.getSize()
 
-local saveX, saveY = term.getCursorPos()
+local saveX, saveY = screen.getCursorPos()
 local saveColor = screen.getTextColor()
-
 screen.setTextColor(colors.white)
-local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
-screen.setCursorPos(math.floor(sWidth / 2) - math.floor(#txt / 2), math.floor(sHeight / 2))
-screen.write(txt)
 
+local saveTerm = term.current()
+term.redirect(screen)
 for y = 1, sHeight, 1 do
   for x = 1, sWidth, 1 do
     if (y % 2 == 0 and x % 2 == 1)
@@ -48,6 +44,7 @@ for y = 1, sHeight, 1 do
     end
   end
 end
+term.redirect(saveTerm)
 
 for i = 1, sWidth, 5 do
   screen.setCursorPos(i, 1)
@@ -59,14 +56,13 @@ for i = 1, sHeight, 5 do
   screen.write(math.floor(i + 0.5))
 end
 
+local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
+screen.setCursorPos(math.floor(sWidth / 2) - math.floor(#txt / 2), math.floor(sHeight / 2))
+screen.write(txt)
+
 screen.setTextColor(saveColor)
-term.setCursorPos(saveX, saveY)
+screen.setCursorPos(saveX, saveY)
 
 -- draw img
-if iconName ~= nil and iconName ~= "" and fs.exist(iconName) then
-  local image = paintutils.loadImage(iconName)
-  if image ~= nil then
-    paintutils.drawImage(image, 1, 1)
-  end
-end
--- sfun.loadIcon("logo", 0, 0)
+
+sfun.drawIcon(iconName, 1, 1, screen)

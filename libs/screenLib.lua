@@ -4,16 +4,36 @@ local workdir = "/bitacu/"
 local iconDirName = "icon/"
 local iconDir = workdir .. iconDirName
 
-function loadIcon(name, x, y)
-  local iconFilename = name .. ".bmp"
-  local iconPath = iconDir .. iconFilename
+function getIconFileName(name)
+  return name .. ".nfp"
+end
 
-  if not fs.exists(iconPath) then
-    cfun.loadFile(iconDirName .. iconFilename)
+function getIconPath(filename)
+  return iconDir .. getIconFileName(filename)
+end
+
+function drawIcon(name, x, y, screen)
+  if name == nil and name == "" then
+    name = "error"
   end
 
-  local image = paintutils.loadImage(iconPath)
-  paintutils.drawImage(image, x, y)
+  local saveTerm = term.current()
+  term.redirect(screen)
+
+  local iconPath = getIconPath(getIconFileName(name))
+
+  if not fs.exists(iconPath) then
+    cfun.loadFile(iconDirName .. getIconFileName(name))
+  end
+
+  if fs.exist(iconPath) then
+    local image = paintutils.loadImage(iconPath)
+    if image ~= nil then
+      image = paintutils.loadImage(getIconPath(getIconFileName("error")))
+    end
+    paintutils.drawImage(image, x, y)
+  end
+  term.redirect(saveTerm)
 end
 
 return {
