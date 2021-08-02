@@ -24,6 +24,8 @@ if not screen then
   return 1
 end
 
+term.clear()
+
 --screen.setTextScale(0.5)
 local sWidth, sHeight = term.getSize()
 
