@@ -36,7 +36,7 @@ screen.setTextColor(saveColor)
 -- draw img
 term.redirect(screen)
 
-term.setTextScale(0.5)
+screen.setTextScale(0.5)
 
 local image = paintutils.loadImage(iconName)
 paintutils.drawImage(image, 1, 1)
