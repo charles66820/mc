@@ -26,7 +26,7 @@ function drawIcon(name, x, y, screen)
     cfun.loadFile(iconDirName .. getIconFileName(name))
   end
 
-  if fs.exist(iconPath) then
+  if fs.exists(iconPath) then
     local image = paintutils.loadImage(iconPath)
     if image ~= nil then
       image = paintutils.loadImage(getIconPath(getIconFileName("error")))
