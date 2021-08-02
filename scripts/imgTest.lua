@@ -42,4 +42,3 @@ local image = paintutils.loadImage(iconName)
 paintutils.drawImage(image, 1, 1)
 
 -- sfun.loadIcon("logo", 0, 0)
-term.restore()
