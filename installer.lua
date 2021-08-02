@@ -4,7 +4,7 @@ local libs = {"computerLib.lua"}
 local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua"}
 local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua",
                        "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
-local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua"}
+local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua", "dj.lua", "speakbot.lua"}
 local workdir = "/bitacu/"
 local libsDirName = "libs/"
 local scriptsDirName = "scripts/"
