@@ -25,6 +25,9 @@ if not screen then
 end
 
 term.clear()
+screen.clear()
+term.redirect(screen)
+screen.setTextScale(1)
 
 --screen.setTextScale(0.5)
 local sWidth, sHeight = term.getSize()
@@ -60,10 +63,6 @@ screen.setTextColor(saveColor)
 term.setCursorPos(saveX, saveY)
 
 -- draw img
-term.redirect(screen)
-
-screen.setTextScale(1)
-
 if iconName ~= nil and iconName ~= "" and fs.exist(iconName) then
   local image = paintutils.loadImage(iconName)
   if image ~= nil then
