@@ -48,12 +48,12 @@ end
 
 for i = 1, sWidth, 5 do
   screen.setCursorPos(i, 1)
-  screen.write(math.round(math.floor(i + 0.5)))
+  screen.write(math.floor(i + 0.5))
 end
 
 for i = 1, sHeight, 5 do
   screen.setCursorPos(1, i)
-  screen.write(math.round(math.floor(i + 0.5)))
+  screen.write(math.floor(i + 0.5))
 end
 
 screen.setTextColor(saveColor)
