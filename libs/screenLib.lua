@@ -28,7 +28,7 @@ function drawIcon(name, x, y, screen)
 
   if fs.exists(iconPath) then
     local image = paintutils.loadImage(iconPath)
-    if image ~= nil then
+    if image == nil then
       image = paintutils.loadImage(getIconPath(getIconFileName("error")))
     end
     paintutils.drawImage(image, x, y)
