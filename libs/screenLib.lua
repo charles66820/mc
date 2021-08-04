@@ -8,8 +8,8 @@ function getIconFileName(name)
   return name .. ".nfp"
 end
 
-function getIconPath(filename)
-  return iconDir .. getIconFileName(filename)
+function getIconPath(name)
+  return iconDir .. getIconFileName(name)
 end
 
 function drawIcon(name, x, y, screen)
@@ -17,7 +17,7 @@ function drawIcon(name, x, y, screen)
     name = "error"
   end
 
-  local iconPath = getIconPath(getIconFileName(name))
+  local iconPath = getIconPath(name)
 
   print("test")
   print(iconPath)
@@ -25,7 +25,7 @@ function drawIcon(name, x, y, screen)
   if not fs.exists(iconPath) then
     print("test0")
     if not cfun.loadFile(iconDirName .. getIconFileName(name)) then
-      iconPath = getIconPath(getIconFileName("error"))
+      iconPath = getIconPath("error")
     end
   end
   print("test1")
@@ -36,7 +36,7 @@ function drawIcon(name, x, y, screen)
     print(image)
     if image == nil then
       print("test4")
-      image = paintutils.loadImage(getIconPath(getIconFileName("error")))
+      image = paintutils.loadImage(getIconPath("error"))
     end
     local saveTerm = term.current()
     term.redirect(screen)
