@@ -5,7 +5,10 @@ local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua"}
 local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua",
                        "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
 local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua", "dj.lua", "speakbot.lua"}
+local icons = {"error.nfp"}
+local computerIcons = {"logo.nfp"}
 local workdir = "/bitacu/"
+local iconDirName = "icon/"
 local libsDirName = "libs/"
 local scriptsDirName = "scripts/"
 local installType = ""
@@ -69,6 +72,9 @@ elseif installType == "computer" then
   for i, v in ipairs(computerScripts) do
     table.insert(scripts, v)
   end
+  for i, v in ipairs(computerIcons) do
+    table.insert(icons, v)
+  end
 elseif installType == "redstoneReceiver" then
   table.insert(scripts, "redstoneReceiver.lua")
 else -- all
@@ -81,6 +87,9 @@ else -- all
     table.insert(scripts, v)
   end
   table.insert(scripts, "redstoneReceiver.lua")
+  for i, v in ipairs(computerIcons) do
+    table.insert(icons, v)
+  end
 end
 
 local installTypeFile = fs.open("/.installType", "w")
@@ -99,6 +108,7 @@ fs.makeDir(workdir)
 loadFiles("", {"configLoader.lua"})
 loadFiles(libsDirName, libs)
 loadFiles(scriptsDirName, scripts)
+loadFiles(iconDirName, icons)
 
 -- Configs file
 local config = {
