@@ -19,23 +19,15 @@ function drawIcon(name, x, y, screen)
 
   local iconPath = getIconPath(name)
 
-  print("test")
-  print(iconPath)
-  print(fs.exists(iconPath))
   if not fs.exists(iconPath) then
-    print("test0")
     if not cfun.loadFile(iconDirName .. getIconFileName(name)) then
       iconPath = getIconPath("error")
     end
   end
-  print("test1")
+
   if fs.exists(iconPath) then
-    print("test2")
     local image = paintutils.loadImage(iconPath)
-    print("test3")
-    print(image)
     if image == nil then
-      print("test4")
       image = paintutils.loadImage(getIconPath("error"))
     end
     local saveTerm = term.current()
