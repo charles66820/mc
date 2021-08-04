@@ -17,23 +17,28 @@ function drawIcon(name, x, y, screen)
     name = "error"
   end
 
-  local saveTerm = term.current()
-  term.redirect(screen)
-
   local iconPath = getIconPath(getIconFileName(name))
 
+  print("test")
   if not fs.exists(iconPath) then
+    print("test0")
     cfun.loadFile(iconDirName .. getIconFileName(name))
   end
-
+  print("test1")
   if fs.exists(iconPath) then
+    print("test2")
     local image = paintutils.loadImage(iconPath)
+    print("test3")
+    print(image)
     if image == nil then
+      print("test4")
       image = paintutils.loadImage(getIconPath(getIconFileName("error")))
     end
+    local saveTerm = term.current()
+    term.redirect(screen)
     paintutils.drawImage(image, x, y)
+    term.redirect(saveTerm)
   end
-  term.redirect(saveTerm)
 end
 
 function drawTextCenter(txt, screen, color, bgcolor)
