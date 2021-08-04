@@ -24,6 +24,7 @@ if not screen then
   return 1
 end
 
+screen.setBackgroundColor(colors.black)
 screen.clear()
 screen.setTextScale(1)
 
