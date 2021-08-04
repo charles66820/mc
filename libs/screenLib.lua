@@ -20,9 +20,13 @@ function drawIcon(name, x, y, screen)
   local iconPath = getIconPath(getIconFileName(name))
 
   print("test")
+  print(iconPath)
+  print(fs.exists(iconPath))
   if not fs.exists(iconPath) then
     print("test0")
-    cfun.loadFile(iconDirName .. getIconFileName(name))
+    if not cfun.loadFile(iconDirName .. getIconFileName(name)) then
+      iconPath = getIconPath(getIconFileName("error"))
+    end
   end
   print("test1")
   if fs.exists(iconPath) then

@@ -36,8 +36,10 @@ function loadFile(name)
     file.write(download.readAll())
     file.close()
     download.close()
+    return true
   else
     print("Couldn't get " .. name)
+    return false
   end
 end
 
