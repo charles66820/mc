@@ -1,6 +1,7 @@
 local config = configLoader.getConfig()
 
 local startup = false
+local args = {...}
 
 if #args == 1 then
   if args[1] == "true" then
