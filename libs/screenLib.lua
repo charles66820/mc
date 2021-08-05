@@ -37,22 +37,36 @@ function drawIcon(name, x, y, screen)
   end
 end
 
-function drawTextCenter(txt, screen, color, bgcolor)
-  local saveX, saveY = term.getCursorPos()
-  local saveColor = term.getTextColor()
-  local saveBgColor = term.getBackgroundColor()
+function drawCheckerPattern(screen, color1, color2)
+  local saveX, saveY = screen.getCursorPos()
+  local saveColor = screen.getTextColor()
+  local saveBgColor = screen.getBackgroundColor()
 
-  term.setTextColor(color)
-  term.setBackgroundColor(bgcolor)
   local sWidth, sHeight = screen.getSize()
-  screen.setCursorPos(math.ceil(sWidth / 2) - math.ceil(#txt / 2), math.ceil(sHeight / 2))
-  screen.write(txt)
+  screen.setBackgroundColor(color1)
+  screen.clear()
+  local saveTerm = term.current()
+  term.redirect(screen)
+  for y = 1, sHeight, 1 do
+    for x = 1, sWidth, 1 do
+      if (y % 2 == 0 and x % 2 == 1) or (y % 2 == 1 and x % 2 == 0) then
+        paintutils.drawPixel(x, y, color2)
+      end
+    end
+  end
+  term.redirect(saveTerm)
+  screen.setCursorPos(saveX, saveY)
+  screen.setTextColor(saveColor)
+  screen.setBackgroundColor(saveBgColor)
+end
 
-  term.setCursorPos(saveX, saveY)
-  term.setTextColor(saveColor)
-  term.setBackgroundColor(saveBgColor)
+function drawTextCenter(txt, screen, color, bgcolor)
+  local sWidth, sHeight = screen.getSize()
+  cfun.printAt(txt, math.ceil(sWidth / 2) - math.ceil(#txt / 2), math.ceil(sHeight / 2), color, bgcolor, screen)
 end
 
 return {
-  loadIcon = loadIcon
+  loadIcon = loadIcon,
+  drawCheckerPattern = drawCheckerPattern,
+  drawTextCenter = drawTextCenter
 }

@@ -10,18 +10,32 @@ function hasValue(arr, val)
   return false
 end
 
+function printAt(txt, x, y, color, bgcolor, screen, clearLine)
+  if screen == nil then
+    screen = term
+  end
+  if clearLine == nil then
+    clearLine = false
+  end
+  local saveX, saveY = screen.getCursorPos()
+  local saveColor = screen.getTextColor()
+  local saveBgColor = screen.getBackgroundColor()
+
+  screen.setTextColor(color)
+  screen.setBackgroundColor(bgcolor)
+  screen.setCursorPos(x, y)
+  if clearLine then
+    screen.clearLine()
+  end
+  screen.write(txt)
+
+  screen.setCursorPos(saveX, saveY)
+  screen.setTextColor(saveColor)
+  screen.setBackgroundColor(saveBgColor)
+end
+
 function printProcessAt(msg, x, y)
-  local saveX, saveY = term.getCursorPos()
-  local saveColor = term.getTextColor()
-  local saveBgColor = term.getBackgroundColor()
-  term.setCursorPos(x, y)
-  term.clearLine()
-  term.setTextColor(colors.black)
-  term.setBackgroundColor(colors.white)
-  term.write(msg)
-  term.setCursorPos(saveX, saveY)
-  term.setTextColor(saveColor)
-  term.setBackgroundColor(saveBgColor)
+  printAt(msg, x, y, colors.black, colors.white, term, true)
 end
 
 function printProcess(msg)
@@ -60,6 +74,7 @@ end
 
 return {
   hasValue = hasValue,
+  printAt = printAt,
   printProcessAt = printProcessAt,
   printProcess = printProcess,
   loadFile = loadFile,
