@@ -35,7 +35,7 @@ sfun.drawCheckerPattern(screen, colors.yellow, colors.red)
 -- print screen size
 local sWidth, sHeight = screen.getSize()
 local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
-cfun.printAt(txt, sWidth - #txt, sHeight, colors.white, colors.black, screen)
+cfun.printAt(txt, sWidth - (#txt - 1), sHeight, colors.white, colors.black, screen)
 
 -- draw icon
 sfun.drawIcon(iconName, 1, 1, screen)
