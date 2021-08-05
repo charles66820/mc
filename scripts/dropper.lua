@@ -1,4 +1,5 @@
 -- Drop items with an interval
+local cfun = computerLib
 -- Args and vars def
 local time = 0
 local nbDrop = 0

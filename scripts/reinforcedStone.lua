@@ -1,4 +1,5 @@
 -- Farm ash
+local cfun = computerLib
 local tfun = turtleLib
 -- Args and vars def
 local args = {...}
