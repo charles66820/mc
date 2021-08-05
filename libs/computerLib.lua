@@ -66,9 +66,11 @@ function sideSearch(type)
 end
 
 function registredLoop(cb)
-  -- todo: registred process
-  -- todo: pause process
-  cb()
+  while true do
+    -- todo: registred process
+    -- todo: pause process
+    cb()
+  end
 end
 
 return {
