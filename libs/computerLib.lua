@@ -1,5 +1,4 @@
-local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
-local workdir = "/bitacu/"
+local config = configLoader.getConfig()
 
 function hasValue(arr, val)
   for i, v in ipairs(arr) do
@@ -43,10 +42,10 @@ function printProcess(msg)
 end
 
 function loadFile(name)
-  local download = http.get(filesServerUrl .. name)
+  local download = http.get(config.filesServerUrl .. name)
   if download then
     print("Fetching " .. name)
-    local file = fs.open(workdir .. name, "w")
+    local file = fs.open(config.workdir .. name, "w")
     file.write(download.readAll())
     file.close()
     download.close()

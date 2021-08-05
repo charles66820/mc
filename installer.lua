@@ -1,5 +1,4 @@
 -- vars def
-local filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/"
 local libs = {"computerLib.lua"}
 local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua"}
 local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua",
@@ -7,10 +6,19 @@ local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lu
 local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua", "dj.lua", "speakbot.lua"}
 local icons = {"error.nfp"}
 local computerIcons = {"logo.nfp"}
-local workdir = "/bitacu/"
-local iconDirName = "icon/"
-local libsDirName = "libs/"
-local scriptsDirName = "scripts/"
+
+local config = {
+  filesServerUrl = "https://raw.githubusercontent.com/charles66820/mc/main/",
+  workdir = "/bitacu/",
+  iconDirName = "icon/",
+  libsDirName = "libs/",
+  scriptsDirName = "scripts/",
+  saveDirName = "save/",
+  dropBadItems = false,
+  dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
+                  "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"},
+  fuelList = {"minecraft:coal", "minecraft:charcoal"}
+}
 local installType = ""
 local autorun = true
 
@@ -34,10 +42,10 @@ end
 -- Functions
 function loadFiles(prefix, files)
   for i, filename in ipairs(files) do
-    local download = http.get(filesServerUrl .. prefix .. filename)
+    local download = http.get(config.filesServerUrl .. prefix .. filename)
     if download then
       print("Fetching " .. filename)
-      local file = fs.open(workdir .. prefix .. filename, "w")
+      local file = fs.open(config.workdir .. prefix .. filename, "w")
       file.write(download.readAll())
       file.close()
       download.close()
@@ -103,30 +111,23 @@ if os.getComputerLabel() == nil then
 end
 
 -- Download scripts and libs
-fs.delete(workdir)
-fs.makeDir(workdir)
+fs.delete(config.workdir)
+fs.makeDir(config.workdir)
 loadFiles("", {"configLoader.lua"})
-loadFiles(libsDirName, libs)
-loadFiles(scriptsDirName, scripts)
-loadFiles(iconDirName, icons)
+loadFiles(config.libsDirName, libs)
+loadFiles(config.scriptsDirName, scripts)
+loadFiles(config.iconDirName, icons)
 
 -- Configs file
-local config = {
-  dropBadItems = false,
-  dropItemList = {"minecraft:cobblestone", "minecraft:stone", "minecraft:andesite", "minecraft:diorite",
-                  "minecraft:granite", "minecraft:gravel", "minecraft:netherrack"},
-  fuelList = {"minecraft:coal", "minecraft:charcoal"}
-}
-
 local configFile = fs.open("/config", "w")
 configFile.write(textutils.serialize(config))
 configFile.close()
 
 -- Startup file
 local startupContent = "local libs = " .. textutils.serialize(libs) .. "\n"
-startupContent = startupContent .. "local workdir = \"" .. workdir .. "\"\n"
-startupContent = startupContent .. "local libsDirName = \"" .. libsDirName .. "\"\n"
-startupContent = startupContent .. "local scriptsDirName = \"" .. scriptsDirName .. "\"\n"
+startupContent = startupContent .. "local workdir = \"" .. config.workdir .. "\"\n"
+startupContent = startupContent .. "local libsDirName = \"" .. config.libsDirName .. "\"\n"
+startupContent = startupContent .. "local scriptsDirName = \"" .. config.scriptsDirName .. "\"\n"
 startupContent = startupContent .. [[
 -- load config
 os.loadAPI(workdir .. "configLoader.lua")

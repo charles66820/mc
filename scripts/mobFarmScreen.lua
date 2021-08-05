@@ -13,6 +13,7 @@ rednet.open(rednetSide)
 local width = 12
 local height = 4
 
+-- todo: load form config.saveDirName
 local mobs = {
   {
     x = 1,

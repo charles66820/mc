@@ -1,8 +1,7 @@
 local cfun = computerLib
+local config = configLoader.getConfig()
 
-local workdir = "/bitacu/"
-local iconDirName = "icon/"
-local iconDir = workdir .. iconDirName
+local iconDir = config.workdir .. config.iconDirName
 
 function getIconFileName(name)
   return name .. ".nfp"
@@ -20,7 +19,7 @@ function drawIcon(name, x, y, screen)
   local iconPath = getIconPath(name)
 
   if not fs.exists(iconPath) then
-    if not cfun.loadFile(iconDirName .. getIconFileName(name)) then
+    if not cfun.loadFile(config.iconDirName .. getIconFileName(name)) then
       iconPath = getIconPath("error")
     end
   end
