@@ -11,4 +11,4 @@ if #args == 1 then
   end
 end
 
-shell.run("wget", "run", config.filesServerUrl .. "installer.lua", "update", startup)
+shell.run("wget", "run", config.filesServerUrl .. "installer.lua", "update", tostring(startup))
