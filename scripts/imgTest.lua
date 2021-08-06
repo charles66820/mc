@@ -32,13 +32,13 @@ sfun.drawCheckerPattern(screen, colors.gray, colors.pink)
 
 cfun.printAt("test a long text !123456789abcdefghijklmnopqrstuvwxyz", 2, 2, colors.white, colors.black, screen)
 
-local win1 = window.create(screen, 10, 10, 50, 50)
+local win1 = window.create(screen, 10, 5, 50, 25)
 --win1.setTextScale(0.5)
 sfun.drawCheckerPattern(win1, colors.yellow, colors.red)
 sfun.printScreenSize(win1)
 cfun.printAt("test a long text !123456789abcdefghijklmnopqrstuvwxyz", 2, 2, colors.white, colors.black, win1)
 
-local win2 = window.create(win1, 10, 10, 30, 30) -- screen to over
+local win2 = window.create(win1, 10, 5, 30, 15) -- screen to over
 --win2.setTextScale(1)
 sfun.drawCheckerPattern(win2, colors.blue, colors.green)
 sfun.printScreenSize(win2)
@@ -56,12 +56,7 @@ win2.setVisible(false)
 os.sleep(2)
 win2.setVisible(true)
 os.sleep(2)
-print(win2.getCursorBlink())
-os.sleep(2)
-win2.setCursorBlink(true)
-os.sleep(2)
-print(win2.getCursorBlink())
-os.sleep(2)
 win2.redraw()
+os.sleep(2)
 
 --sfun.drawIcon(iconName, 1, 1, screen)
