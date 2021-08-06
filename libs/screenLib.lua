@@ -64,8 +64,15 @@ function drawTextCenter(txt, screen, color, bgcolor)
   cfun.printAt(txt, math.ceil(sWidth / 2) - math.ceil(#txt / 2), math.ceil(sHeight / 2), color, bgcolor, screen)
 end
 
+function printScreenSize(screen)
+  local sWidth, sHeight = screen.getSize()
+  local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
+  cfun.printAt(txt, sWidth - (#txt - 1), sHeight, colors.white, colors.black, screen)
+end
+
 return {
   loadIcon = loadIcon,
   drawCheckerPattern = drawCheckerPattern,
-  drawTextCenter = drawTextCenter
+  drawTextCenter = drawTextCenter,
+  printScreenSize = printScreenSize
 }
