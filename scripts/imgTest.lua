@@ -27,15 +27,21 @@ end
 screen.setBackgroundColor(colors.black)
 screen.clear()
 screen.setTextScale(1)
---screen.setTextScale(0.5)
 
--- draw checker pattern
-sfun.drawCheckerPattern(screen, colors.yellow, colors.red)
+sfun.drawCheckerPattern(screen, colors.gray, colors.pink)
 
--- print screen size
-local sWidth, sHeight = screen.getSize()
-local txt = "(" .. sWidth .. ", " .. sHeight .. ")"
-cfun.printAt(txt, sWidth - (#txt - 1), sHeight, colors.white, colors.black, screen)
+cfun.printAt("test a long text !123456789abcdefghijklmnopqrstuvwxyz", 2, 2, colors.white, " ", screen)
 
--- draw icon
-sfun.drawIcon(iconName, 1, 1, screen)
+local win1 = window.create(screen, 10, 10, 50, 50)
+win1.setTextScale(0.5)
+sfun.drawCheckerPattern(win1, colors.yellow, colors.red)
+sfun.printScreenSize(win1)
+cfun.printAt("test a long text !123456789abcdefghijklmnopqrstuvwxyz", 2, 2, colors.white, colors.black, win1)
+
+local win2 = window.create(win1, 10, 10, 30, 30) -- screen to over
+win2.setTextScale(1)
+sfun.drawCheckerPattern(win2, colors.blue, colors.green)
+sfun.printScreenSize(win2)
+cfun.printAt("test a long text !123456789abcdefghijklmnopqrstuvwxyz", 2, 2, colors.white, colors.black, win2)
+
+--sfun.drawIcon(iconName, 1, 1, screen)
