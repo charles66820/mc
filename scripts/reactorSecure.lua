@@ -3,7 +3,7 @@ local cfun = computerLib
 -- Settings vars
 local alertTemperature = 8000
 local alertSaturation = 5
-local alertField = 20
+local alertField = 15
 
 -- Args and vars def
 local redstoneOutputSide = nil
