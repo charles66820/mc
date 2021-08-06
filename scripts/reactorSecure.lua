@@ -89,10 +89,6 @@ function start()
       end
       local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
       local field = (info.fieldStrength * 100) / info.maxFieldStrength
-      cfun.printProcessAt("is warming_up : " .. tostring(info.status ~= "warming_up"), 1, 2)
-      cfun.printProcessAt("is tmp alert : " .. tostring(info.temperature >= alertTemperature), 1, 3)
-      cfun.printProcessAt("is saturation : " .. tostring(saturation <= 20), 1, 4)
-      cfun.printProcessAt("is field : " .. tostring(field <= 20), 1, 5)
       if info.status ~= "warming_up" and info.status ~= "offline" and (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField) then
         if reactor ~= nil then
           reactor.stopReactor()
