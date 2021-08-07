@@ -4,6 +4,7 @@ local cfun = computerLib
 local alertTemperature = 8000
 local alertSaturation = 5
 local alertField = 15
+local alertFuelConversion = 80
 
 -- Args and vars def
 local redstoneOutputSide = nil
@@ -89,7 +90,8 @@ function start()
       end
       local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
       local field = (info.fieldStrength * 100) / info.maxFieldStrength
-      if info.status ~= "warming_up" and info.status ~= "offline" and (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField) then
+      local fuelConversion = (info.fuelConversion * 100) / info.maxFuelConversion
+      if info.status ~= "warming_up" and info.status ~= "offline" and (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField or fuelConversion >= alertFuelConversion) then
         if reactor ~= nil then
           reactor.stopReactor()
         end
