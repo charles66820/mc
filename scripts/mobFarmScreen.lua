@@ -102,7 +102,7 @@ local nbRow = math.floor(sHeight / height)
 for y = 1, nbRow do
   for x = 1, nbCol do
     local index = x + (nbCol * (y - 1))
-    if index < #mobs then
+    if index <= #mobs then
       -- init button
       table.insert(buttons,
         sfun.IconToggleButton(screen, 1 + (width * (x - 1)), 1 + (height * (y - 1)), width, height,
