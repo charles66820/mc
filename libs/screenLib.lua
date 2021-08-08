@@ -70,9 +70,64 @@ function printScreenSize(screen)
   cfun.printAt(txt, sWidth - (#txt - 1), sHeight, colors.white, colors.black, screen)
 end
 
+-- buttons
+function IconToggleButton(screen, x, y, width, height, onClick, icon)
+  -- private member
+  local toggled = false
+  local iconTextureOn = window.create(screen, x, y, width, height)
+  local iconTextureOff = window.create(screen, x, y, width, height, false)
+
+  -- constructor body
+  drawIcon(icon .. "On", 1, 1, iconTextureOn)
+  drawIcon(icon .. "Off", 1, 1, iconTextureOff)
+
+  -- methods deffinition
+  return {
+    getX = function()
+      return x
+    end,
+    getY = function()
+      return y
+    end,
+    move = function(newX, newY)
+      x = newX
+      y = newY
+      iconTextureOn.reposition(x, y)
+      iconTextureOff.reposition(x, y)
+      if toggled then
+        iconTextureOn.redraw()
+      else
+        iconTextureOff.redraw()
+      end
+    end,
+    getToggled = function()
+      return toggled
+    end,
+    clickEvent = function(self, event, side, x, y) -- self
+      if event == "monitor_touch" then
+        if x >= self.x and x < self.x + self.width and y >= self.y and y < self.y + self.height then
+          if toggled then
+            iconTextureOff.setVisible(true)
+            iconTextureOn.setVisible(false)
+            iconTextureOff.redraw()
+            toggled = false
+          else
+            iconTextureOn.setVisible(true)
+            iconTextureOff.setVisible(false)
+            iconTextureOn.redraw()
+            toggled = true
+          end
+          onClick(self, side, x, y)
+        end
+      end
+    end
+  }
+end
+
 return {
   loadIcon = loadIcon,
   drawCheckerPattern = drawCheckerPattern,
   drawTextCenter = drawTextCenter,
-  printScreenSize = printScreenSize
+  printScreenSize = printScreenSize,
+  IconToggleButton = IconToggleButton
 }
