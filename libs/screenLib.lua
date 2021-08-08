@@ -105,7 +105,7 @@ function IconToggleButton(screen, x, y, width, height, onClick, icon)
     end,
     clickEvent = function(self, event, side, x, y) -- self
       if event == "monitor_touch" then
-        if x >= self.x and x < self.x + self.width and y >= self.y and y < self.y + self.height then
+        if x >= self.getX() and x < self.getX() + width and y >= self.getY() and y < self.getY() + height then
           if toggled then
             iconTextureOff.setVisible(true)
             iconTextureOn.setVisible(false)
