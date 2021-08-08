@@ -1,5 +1,6 @@
 -- Mob farm screen
 local cfun = computerLib
+local sfun = screenLib
 local config = configLoader.getConfig()
 -- Args and vars def
 local rednetSide = cfun.sideSearch("modem")
@@ -98,20 +99,22 @@ end
 local sWidth, sHeight = screen.getSize()
 for y = 1, sHeight / height do
   for x = 1, sWidth / width do
-    local mob = mobs[x + (width * (y - 1))]
-    -- init button
-    table.insert(buttons,
-      sfun.IconToggleButton(screen, 1 + (width * (x - 1)), 1 + (height * (y - 1)), width, height,
-        function(this, side, x, y)
-          if this.getToggled() then
-            mob.active = true
-          else
-            mob.active = false
-          end
-          activeSpawner(mob.name, mob.active)
-        end, mob.name))
-    -- init spawner active
-    activeSpawner(mob.name, mob.active)
+    local index = x + (width * (y - 1))
+    if index < #mobs then
+      -- init button
+      table.insert(buttons,
+        sfun.IconToggleButton(screen, 1 + (width * (x - 1)), 1 + (height * (y - 1)), width, height,
+          function(this, side, x, y)
+            if this.getToggled() then
+              mobs[index].active = true
+            else
+              mobs[index].active = false
+            end
+            activeSpawner(mobs[index].name, mobs[index].active)
+          end, mobs[index].name))
+      -- init spawner active
+      activeSpawner(mobs[index].name, mobs[index].active)
+    end
   end
 end
 
