@@ -88,6 +88,7 @@ else
 end
 
 -- Main
+screen.setTextScale(0.5)
 function activeSpawner(name, active)
   if active then
     rednet.broadcast(name .. "Off", protocol)
@@ -113,6 +114,7 @@ for y = 1, nbRow do
               mobs[index].active = false
             end
             activeSpawner(mobs[index].name, mobs[index].active)
+            writeSave(mobs)
           end, mobs[index].name, mobs[index].active))
       -- init spawner active
       activeSpawner(mobs[index].name, mobs[index].active)
