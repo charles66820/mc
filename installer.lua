@@ -3,7 +3,7 @@ local libs = {"computerLib.lua"}
 local scripts = {"setName.lua", "keepStart.lua", "detectDevice.lua", "update.lua"}
 local turtleScripts = {"ctunnel.lua", "detectBlock.lua", "dropper.lua", "rect.lua", "room.lua", "vtunnel.lua",
                        "ash.lua", "reinforcedStone.lua", "rectplacer.lua"}
-local computerScripts = {"imgTest.lua", "screen.lua", "mobFarmScreen.lua", "reactorSecure.lua", "dj.lua", "speakbot.lua", "slider.lua"}
+local computerScripts = {"imgTest.lua", "mobFarmScreen.lua", "reactorSecure.lua", "dj.lua", "speakbot.lua", "slider.lua"}
 local icons = {"error.nfp"}
 local computerIcons = {"logo.nfp"}
 
