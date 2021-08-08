@@ -20,6 +20,8 @@ if screen == nil then
   return 1
 end
 
+local speaker = peripheral.find("speaker")
+
 local width = 15
 local height = 10
 local protocol = "spawner"
@@ -108,6 +110,9 @@ for y = 1, nbRow do
       table.insert(buttons,
         sfun.IconToggleButton(screen, 1 + (width * (x - 1)), 1 + (height * (y - 1)), width, height,
           function(this, side, x, y)
+            if speaker ~= nil then
+              speaker.playSound("minecraft:ui.button.click", 3)
+            end
             if this.getToggled() then
               mobs[index].active = true
             else
