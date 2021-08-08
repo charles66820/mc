@@ -97,9 +97,11 @@ function activeSpawner(name, active)
 end
 
 local sWidth, sHeight = screen.getSize()
-for y = 1, sHeight / height do
-  for x = 1, sWidth / width do
-    local index = x + (width * (y - 1))
+local nbCol = math.floor(sWidth / width)
+local nbRow = math.floor(sHeight / height)
+for y = 1, nbRow do
+  for x = 1, nbCol do
+    local index = x + (nbCol * (y - 1))
     if index < #mobs then
       -- init button
       table.insert(buttons,
