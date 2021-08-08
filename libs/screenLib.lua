@@ -71,11 +71,14 @@ function printScreenSize(screen)
 end
 
 -- buttons
-function IconToggleButton(screen, x, y, width, height, onClick, icon)
+function IconToggleButton(screen, x, y, width, height, onClick, icon, initToggled)
   -- private member
   local toggled = false
-  local iconTextureOn = window.create(screen, x, y, width, height)
-  local iconTextureOff = window.create(screen, x, y, width, height, false)
+  if initToggled then
+    toggled = true
+  end
+  local iconTextureOn = window.create(screen, x, y, width, height, toggled)
+  local iconTextureOff = window.create(screen, x, y, width, height, not toggled)
 
   -- constructor body
   drawIcon(icon .. "On", 1, 1, iconTextureOn)

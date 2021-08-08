@@ -113,7 +113,7 @@ for y = 1, nbRow do
               mobs[index].active = false
             end
             activeSpawner(mobs[index].name, mobs[index].active)
-          end, mobs[index].name))
+          end, mobs[index].name, mobs[index].active))
       -- init spawner active
       activeSpawner(mobs[index].name, mobs[index].active)
     end
