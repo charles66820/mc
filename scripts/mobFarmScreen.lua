@@ -85,6 +85,9 @@ else
   }, {
     name = "blizz",
     active = false
+  }, {
+    name = "blitz",
+    active = false
   }}
   writeSave(mobs)
 end
