@@ -1,9 +1,9 @@
 -- Draconic evolution reactor secure program
 local cfun = computerLib
 -- Settings vars
-local alertTemperature = 8000
+local alertTemperature = 8010
 local alertSaturation = 5
-local alertField = 15
+local alertField = 1
 local alertFuelConversion = 80
 
 -- Args and vars def
