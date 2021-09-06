@@ -568,7 +568,7 @@ function update()
       gDrawLine(1, mon.y, 4, colors.gray)
     end
 
-    sleep(0.02)
+    sleep(0.5)
   end
 end
 
