@@ -278,6 +278,8 @@ function update()
   local newInflow = 0.0
   local newOutflow = 0.0
 
+  local monUpdateTime = 25
+
   while true do
     updateInfo()
     local isStable = false
@@ -426,7 +428,8 @@ function update()
     gateIn.setFlowOverride(newInflow)
     gateOut.setFlowOverride(outflowMultiplied)
 
-    if mon ~= null then
+    if mon ~= null and monUpdateTime >= 25 then
+      monUpdateTime = 0
       gClear()
 
       if screenPage == 0 then
@@ -566,9 +569,11 @@ function update()
       end
 
       gDrawLine(1, mon.y, 4, colors.gray)
+    elseif mon ~= null and monUpdateTime < 25 then
+      monUpdateTime = monUpdateTime + 1
     end
 
-    sleep(0.5)
+    sleep(0.02)
   end
 end
 
