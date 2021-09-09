@@ -22,7 +22,6 @@ for i, iconName in ipairs(images) do
   local win = window.create(screen, 1, 1, sWidth, sHeight, false)
   sfun.drawIcon(iconName, 1, 1, win)
   table.insert(windows, win)
-  os.sleep(10)
 end
 
 while true do
@@ -34,5 +33,6 @@ while true do
     win.setVisible(true)
     win.redraw()
     lastWin = win
+    os.sleep(10)
   end
 end
