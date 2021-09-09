@@ -19,7 +19,7 @@ local sWidth, sHeight = screen.getSize()
 -- load image in window
 for i, iconName in ipairs(images) do
   sfun.drawIcon(iconName, 1, 1, screen)
-  local win = window.create(screen, x, y, sWidth, sHeight, false)
+  local win = window.create(screen, 1, 1, sWidth, sHeight, false)
   sfun.drawIcon(iconName, 1, 1, win)
   table.insert(windows, win)
   os.sleep(10)
