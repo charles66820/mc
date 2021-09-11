@@ -96,9 +96,10 @@ function start()
   shell.run("rect", 1, width, 2, "false", "false")
 
   turtle.turnLeft()
+  tfun.digDownAndDown(1)
   tfun.digAndForward(1)
-  turtle.turnLeft()
   tfun.digDownAndDown(3)
+  tfun.turnAround()
   shell.run("rect", 1, width, 5, "false", "false")
 end
 
