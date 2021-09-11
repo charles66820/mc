@@ -43,6 +43,11 @@ function start()
   tfun.digDownAndDown(1)
   shell.run("rect", width, 3, 1, "false", "false")
 
+  if width % 2 == 0 then
+    tfun.turnAround()
+    tfun.digAndForward(2)
+  end
+
   tfun.digAndForward(1)
   shell.run("rect", 1, width, 2, "false", "false")
 
@@ -78,6 +83,11 @@ function start()
   turtle.turnLeft()
   shell.run("rect", width, 3, 1, "false", "false")
 
+  if width % 2 == 0 then
+    tfun.turnAround()
+    tfun.digAndForward(2)
+  end
+
   tfun.digAndForward(1)
   tfun.digDownAndDown(1)
   shell.run("rect", 1, width, 2, "false", "false")
@@ -98,7 +108,7 @@ function start()
   turtle.turnLeft()
   tfun.digDownAndDown(1)
   tfun.digAndForward(1)
-  tfun.digDownAndDown(3)
+  tfun.digDownAndDown(4)
   tfun.turnAround()
   shell.run("rect", 1, width, 5, "false", "false")
 end
