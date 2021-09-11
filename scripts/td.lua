@@ -38,9 +38,9 @@ function start()
   shell.run("rect", 1, width, 2, "false", "false")
 
   turtle.turnLeft()
+  tfun.digDownAndDown(1)
   tfun.digAndForward(1)
   turtle.turnLeft()
-  tfun.digDownAndDown(1)
   shell.run("rect", width, 3, 1, "false", "false")
 
   if width % 2 == 0 then
