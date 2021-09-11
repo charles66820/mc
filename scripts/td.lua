@@ -30,7 +30,7 @@ function start()
   tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
 
-  turtle.turnrRight()
+  turtle.turnRight()
   tfun.digAndForward(1)
   tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
@@ -41,6 +41,22 @@ function start()
   tfun.digDownAndDown(1)
   shell.run("rect", width, 3, 1, "false", "false")
 
+  tfun.digAndForward(1)
+  shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  tfun.turnAround()
+  shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnRight()
+  tfun.digAndForward(1)
+  shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  tfun.turnAround()
+  shell.run("rect", 1, width, 2, "false", "false")
 end
 
 start()
