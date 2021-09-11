@@ -20,21 +20,24 @@ end
 
 -- functions
 function start()
-  tfun.digDownAndDown(2)
   turtle.turnLeft()
+  tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
 
-  tfun.digDownAndDown(2)
   turtle.turnLeft()
+  tfun.digAndForward(1)
   tfun.turnAround()
+  tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
 
-  tfun.digDownAndDown(2)
   turtle.turnLeft()
+  tfun.digAndForward(1)
+  tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
 
-  tfun.digDownAndDown(2)
   turtle.turnLeft()
+  tfun.digAndForward(1)
+  tfun.digDownAndDown(2)
   tfun.turnAround()
   shell.run("rect", 3, width, 1, "false", "false")
 
