@@ -98,8 +98,8 @@ function start()
   turtle.turnLeft()
   tfun.digAndForward(1)
   turtle.turnLeft()
-  tfun.digDownAndDown(1)
-  shell.run("rect", width, 3, 1, "false", "false")
+  tfun.digDownAndDown(3)
+  shell.run("rect", 1, width, 5, "false", "false")
 end
 
 start()
