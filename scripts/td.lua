@@ -25,14 +25,16 @@ function start()
   shell.run("rect", 1, width, 2, "false", "false")
 
   turtle.turnLeft()
+  tfun.digDownAndDown(1)
   tfun.digAndForward(1)
+  tfun.digDownAndDown(1)
   tfun.turnAround()
-  tfun.digDownAndDown(2)
   shell.run("rect", 1, width, 2, "false", "false")
 
   turtle.turnRight()
+  tfun.digDownAndDown(1)
   tfun.digAndForward(1)
-  tfun.digDownAndDown(2)
+  tfun.digDownAndDown(1)
   shell.run("rect", 1, width, 2, "false", "false")
 
   turtle.turnLeft()
