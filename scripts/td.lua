@@ -63,6 +63,20 @@ function start()
   turtle.turnRight()
   tfun.digAndForward(1)
   shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  tfun.turnAround()
+  shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnRight()
+  tfun.digAndForward(1)
+  shell.run("rect", 1, width, 2, "false", "false")
+
+  turtle.turnLeft()
+  tfun.digAndForward(1)
+  turtle.turnLeft()
+  shell.run("rect", width, 3, 1, "false", "false")
 end
 
 start()
