@@ -7,6 +7,7 @@ local width = 0
 local length = 0
 local height = 0
 local centerStart = false -- By default turtle start ad left corner
+local reset = true
 local args = {...}
 
 if #args == 1 then
@@ -25,8 +26,20 @@ elseif #args == 4 then
   if args[4] == "true" then
     centerStart = true
   end
-elseif #args > 4 then
-  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <width> <length> <height> <centerStart>")
+elseif #args == 5 then
+  width = tonumber(args[1])
+  length = tonumber(args[2])
+  height = tonumber(args[3])
+  if args[4] == "true" then
+    centerStart = true
+  end
+  if args[5] == "true" then
+    reset = true
+  else
+    reset = false
+  end
+elseif #args > 5 then
+  print("Usage: ", arg[0] or fs.getName(shell.getRunningProgram()), " <width> <length> <height> <centerStart> <reset>")
   return 128
 end
 
@@ -166,7 +179,9 @@ end
 function start()
   init()
   mainLoop()
-  clean()
+  if (reset) then
+    clean()
+  end
 end
 
 function inventoryListener()
