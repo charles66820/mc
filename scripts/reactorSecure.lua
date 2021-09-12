@@ -63,7 +63,7 @@ function findReactor()
     --
     cfun.printProcess("Serching reactor...")
     reactor = peripheral.find("draconic_reactor")
-    for n = 1, 20 do
+    for n = 20, 1 do
       cfun.printProcess("Serch reactor in " .. n .. " seconds")
       os.sleep(1)
     end
