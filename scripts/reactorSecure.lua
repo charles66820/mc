@@ -50,7 +50,7 @@ function sendAlert(msg)
     if not rednet.isOpen(rednetSide) then
       rednet.open(rednetSide)
     end
-    rednet.broadcast("solarReactorAlert(".. msg ..")", protocol)
+    rednet.broadcast("solarReactorAlert(" .. msg .. ")", protocol)
   end
 end
 
@@ -63,7 +63,10 @@ function findReactor()
     --
     cfun.printProcess("Serching reactor...")
     reactor = peripheral.find("draconic_reactor")
-    os.sleep(0.5)
+    for n = 1, 20 do
+      cfun.printProcess("Serch reactor in " .. n .. " seconds")
+      os.sleep(1)
+    end
   end
   cfun.printProcess("Reactor found!")
   return reactor
@@ -92,13 +95,16 @@ function start()
       local saturation = (info.energySaturation * 100) / info.maxEnergySaturation
       local field = (info.fieldStrength * 100) / info.maxFieldStrength
       local fuelConversion = (info.fuelConversion * 100) / info.maxFuelConversion
-      if info.status ~= "warming_up" and info.status ~= "offline" and (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField or fuelConversion >= alertFuelConversion) then
+      if info.status ~= "warming_up" and info.status ~= "offline" and
+        (info.temperature >= alertTemperature or saturation <= alertSaturation or field <= alertField or fuelConversion >=
+          alertFuelConversion) then
         if reactor ~= nil then
           reactor.stopReactor()
         end
         sendAlert("stop")
       end
     end
+    sleep(0.02)
   end
 end
 
